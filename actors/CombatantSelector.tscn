@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="CombatantSelector" type="Spatial"]
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 16.2075, 0 )
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 12.0

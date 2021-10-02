@@ -1,8 +1,82 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
 
-[node name="SetupScreen" type="Control"]
+[ext_resource path="res://actors/CombatantSelector.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/combatant.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Environment" id=2]
+background_mode = 1
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 100, 0.1, 100 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 50, 0.05, 50 )
+
+[node name="SetupScreenRoot" type="Spatial"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SetupScreen" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.64834, 11.3093 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="SelectorPad" type="MeshInstance" parent="StaticBody"]
+layers = 2
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CombatantSelector" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
+transform = Transform( -0.030399, 0, 0.999538, 0, 1, 0, -0.999538, 0, -0.030399, 0, 1.04011, -4.64954 )
+
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector" instance=ExtResource( 2 )]
+MercyStabilityTime = 10000.0
+
+[node name="CombatantSelector2" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
+transform = Transform( -0.526585, 0, 0.850123, 0, 1, 0, -0.850123, 0, -0.526585, -6.20479, 1.04011, -3.18089 )
+
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector2" instance=ExtResource( 2 )]
+MercyStabilityTime = 10000.0
+
+[node name="CombatantSelector4" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
+transform = Transform( -0.914056, 0, 0.405588, 0, 1, 0, -0.405588, 0, -0.914056, -9.73271, 1.0401, 1.56475 )
+
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector4" instance=ExtResource( 2 )]
+MercyStabilityTime = 10000.0
+
+[node name="CombatantSelector3" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
+transform = Transform( -0.526585, 0, -0.850123, 0, 1, 0, 0.850123, 0, -0.526585, 6.56709, 1.04011, -3.2417 )
+
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector3" instance=ExtResource( 2 )]
+MercyStabilityTime = 10000.0
+
+[node name="CombatantSelector5" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
+transform = Transform( -0.914056, 0, -0.405588, 0, 1, 0, 0.405588, 0, -0.914056, 11.0226, 1.04011, 0.819874 )
+
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector5" instance=ExtResource( 2 )]
+MercyStabilityTime = 10000.0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.740465, -0.189974, 0.644688, 0.672095, 0.209299, -0.710269, 0, 0.95922, 0.28266, 8.0926, -9.53674e-07, 3.41941 )
+light_energy = 0.25
+
+[node name="DirectionalLight2" type="DirectionalLight" parent="."]
+transform = Transform( 0.94914, 0.0889965, -0.302014, -0.211506, -0.530339, -0.820978, -0.233234, 0.843101, -0.484543, 3.61872, -9.53674e-07, 1.63207 )
+light_energy = 0.1
+
+[node name="DirectionalLight3" type="DirectionalLight" parent="."]
+transform = Transform( -0.693757, 0.673136, -0.256105, -0.211506, -0.530339, -0.820978, -0.688453, -0.515392, 0.510299, 3.61872, -9.53674e-07, 1.63207 )
+light_energy = 0.1
