@@ -47,7 +47,9 @@ material/0 = null
 [node name="Combatant" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68409, 5.24089, 0 )
 IsPlayerControlled = true
-MercyStabilityTime = 40000.0
+
+[node name="PIDBalancer" parent="Combatant" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68409, -5.24089, 0 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28077, 9.42764 )

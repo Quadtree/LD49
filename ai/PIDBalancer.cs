@@ -16,6 +16,13 @@ public class PIDBalancer : Spatial
     public override void _Process(float delta)
     {
         var cmb = GetParent<Combatant>();
+
+        if (cmb.MoveLeft || cmb.MoveRight)
+        {
+            PastError = 0;
+            return;
+        }
+
         var body = cmb.FindChildByName<RigidBody>("Body");
         var bodyRotation = body.Rotation.z;
         var bodyRotationRate = body.AngularVelocity.z;
@@ -23,8 +30,8 @@ public class PIDBalancer : Spatial
         PastError += bodyRotation * delta;
 
         var GAIN = -1f;
-        var TIME_I = 1f;
-        var TIME_D = 1f;
+        var TIME_I = 0.5f;
+        var TIME_D = 0.5f;
 
         var control = GAIN * (bodyRotation + (1 / TIME_I) * PastError + TIME_D * bodyRotationRate);
 
