@@ -29,7 +29,7 @@ public class Combatant : Spatial
         var wheelJoint = this.FindChildByName<Generic6DOFJoint>("Generic6DOFJoint");
         wheelJoint.AngularMotorZ__enabled = true;
         wheelJoint.AngularMotorZ__forceLimit = 1000f;
-        wheelJoint.AngularMotorZ__targetVelocity = -targetSpeed * 4;
+        wheelJoint.AngularMotorZ__targetVelocity = -targetSpeed * 6;
 
         var cam = GetViewport().GetCamera();
 
@@ -69,11 +69,11 @@ public class Combatant : Spatial
             //Console.WriteLine($"armRootLocation={armRootLocation} pos={pos}");
             Console.WriteLine($"angle={angle} dist={dist} od={od}");
 
-            armJoint.AngularLimitZ__lowerAngle = angle - 0.05f;
-            armJoint.AngularLimitZ__upperAngle = angle + 0.05f;
+            //armJoint.AngularLimitZ__lowerAngle = angle - 0.05f;
+            //armJoint.AngularLimitZ__upperAngle = angle + 0.05f;
 
-            armJoint.LinearLimitY__lowerDistance = dist - 0.01f;
-            armJoint.LinearLimitY__upperDistance = dist + 0.01f;
+            //armJoint.LinearLimitY__lowerDistance = dist - 0.01f;
+            //armJoint.LinearLimitY__upperDistance = dist + 0.01f;
         }
         else
         {
