@@ -21,6 +21,9 @@ public class Combatant : Spatial
     [Export]
     float PunchRange = 2.0f;
 
+    [Export]
+    float BonusPunchRangeDuringPunch = 2.0f;
+
     //float ExtraPunchTime = 1f;
 
     public Vector3 CurArmPos = new Vector3();
@@ -35,6 +38,12 @@ public class Combatant : Spatial
     float ExtraPunchRange = 0;
 
     public float TargetSpeed = 0f;
+
+    [Export]
+    public float WheelMotorPower = 1f;
+
+    [Export]
+    public float WheelMotorSpeed = 1f;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -89,8 +98,8 @@ public class Combatant : Spatial
 
         var wheelJoint = this.FindChildByName<Generic6DOFJoint>("Generic6DOFJoint");
         wheelJoint.AngularMotorZ__enabled = true;
-        wheelJoint.AngularMotorZ__forceLimit = 40;
-        wheelJoint.AngularMotorZ__targetVelocity = -TargetSpeed * 3;
+        wheelJoint.AngularMotorZ__forceLimit = 40 * WheelMotorPower;
+        wheelJoint.AngularMotorZ__targetVelocity = -TargetSpeed * 3 * WheelMotorSpeed;
 
         TargetSpeed = 0;
 
@@ -191,7 +200,7 @@ public class Combatant : Spatial
         if (PunchGoingOut)
         {
             ExtraPunchRange += delta * 2;
-            if (ExtraPunchRange >= 2)
+            if (ExtraPunchRange >= BonusPunchRangeDuringPunch)
             {
                 PunchGoingOut = false;
                 PunchComingBack = true;

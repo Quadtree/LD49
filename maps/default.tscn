@@ -1,6 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://actors/MatchRunner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ai/SlowPIDBalancer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/combatant.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ai/AggressivePuncher.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ai/PIDBalancer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ai/SimpleBalancer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/MatchRunner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/cmb_types/meteor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/cmb_types/steamroller.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ai/SlowPuncher.tscn" type="PackedScene" id=9]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 10, 0.1, 2 )
@@ -70,4 +78,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.912577, 0, 32.509 )
 mesh = SubResource( 9 )
 material/0 = null
 
-[node name="MatchRunner" parent="." instance=ExtResource( 1 )]
+[node name="MatchRunner" parent="." instance=ExtResource( 6 )]
+CombatantTypes = [ ExtResource( 2 ), ExtResource( 8 ), ExtResource( 7 ) ]
+MovementAIs = [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ) ]
+PunchingAIs = [ ExtResource( 9 ), ExtResource( 3 ) ]

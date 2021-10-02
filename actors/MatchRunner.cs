@@ -15,6 +15,12 @@ public class MatchRunner : Spatial
     [Export]
     public Array<PackedScene> CombatantTypes;
 
+    [Export]
+    public Array<PackedScene> MovementAIs;
+
+    [Export]
+    public Array<PackedScene> PunchingAIs;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -39,12 +45,17 @@ public class MatchRunner : Spatial
 
         var player = CombatantTypes[Util.RandInt(0, CombatantTypes.Count)].Instance<Combatant>();
         player.IsPlayerControlled = true;
+        player.Name = "Player";
         GetTree().CurrentScene.AddChild(player);
         player.SetGlobalLocation(new Vector3(4, 2, 0));
 
 
         var opponent = CombatantTypes[Util.RandInt(0, CombatantTypes.Count)].Instance<Combatant>();
+        opponent.Name = "Opponent";
         GetTree().CurrentScene.AddChild(opponent);
         opponent.SetGlobalLocation(new Vector3(-4, 2, 0));
+
+        opponent.AddChild(MovementAIs[Util.RandInt(0, MovementAIs.Count)].Instance<Node>());
+        opponent.AddChild(PunchingAIs[Util.RandInt(0, PunchingAIs.Count)].Instance<Node>());
     }
 }
