@@ -46,16 +46,15 @@ mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="RigidBody2" type="RigidBody" parent="."]
-transform = Transform( 0.959166, -0.282844, 0, 0.282844, 0.959166, 0, 0, 0, 1, 0, 0, 0 )
+transform = Transform( 0.959166, -0.282844, 0, 0.282844, 0.959166, 0, 0, 0, 1, -0.499804, 1.69491, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77483, 0 )
 shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.775, 0 )
 mesh = SubResource( 6 )
 material/0 = null
 
 [node name="HingeJoint" type="HingeJoint" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+nodes/node_a = NodePath("../RigidBody")
+nodes/node_b = NodePath("../RigidBody2")
