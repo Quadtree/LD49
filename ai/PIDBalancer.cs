@@ -5,6 +5,8 @@ public class PIDBalancer : Spatial
 {
     private float PastError = 0f;
 
+    [Export]
+    public float CenterPoint = 0f;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -27,13 +29,13 @@ public class PIDBalancer : Spatial
         var bodyRotation = body.Rotation.z;
         var bodyRotationRate = body.AngularVelocity.z;
 
-        PastError += bodyRotation * delta;
+        PastError += (bodyRotation - CenterPoint) * delta;
 
         var GAIN = -1f;
         var TIME_I = 0.5f;
         var TIME_D = 0.5f;
 
-        var control = GAIN * (bodyRotation + (1 / TIME_I) * PastError + TIME_D * bodyRotationRate);
+        var control = GAIN * ((bodyRotation - CenterPoint) + (1 / TIME_I) * PastError + TIME_D * bodyRotationRate);
 
         //Console.WriteLine(control);
 

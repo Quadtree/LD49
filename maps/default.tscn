@@ -82,3 +82,4 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.83277, 3.10448, 0 )
 
 [node name="PIDBalancer" parent="Combatant2" instance=ExtResource( 1 )]
+CenterPoint = 0.2
