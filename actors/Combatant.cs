@@ -21,13 +21,18 @@ public class Combatant : Spatial
     [Export]
     float PunchRange = 2.0f;
 
-    float ExtraPunchTime = 1f;
+    //float ExtraPunchTime = 1f;
 
     public Vector3 CurArmPos = new Vector3();
     public Vector3 DesiredArmPos = new Vector3();
 
     [Export]
     float ArmMoveSpeed = 0.2f;
+
+    bool PunchGoingOut = false;
+    bool PunchComingBack = false;
+
+    float ExtraPunchRange = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -94,15 +99,15 @@ public class Combatant : Spatial
             var armDelta = (DesiredArmPos - CurArmPos).Normalized() * ArmMoveSpeed * delta;
             CurArmPos += armDelta;
 
-            var effectivePunchRange = PunchRange;
+            var effectivePunchRange = PunchRange + ExtraPunchRange;
 
             if (CurArmPos.Length() > PunchRange)
             {
-                if (ExtraPunchTime >= delta)
-                {
-                    ExtraPunchTime -= delta;
-                    effectivePunchRange += 1.5f;
-                }
+                //if (ExtraPunchTime >= delta)
+                //{
+                //    ExtraPunchTime -= delta;
+                //    effectivePunchRange += 1.5f;
+                //}
             }
 
             if (CurArmPos.Length() > effectivePunchRange)
@@ -167,8 +172,27 @@ public class Combatant : Spatial
             body.AddForce(new Vector3(0, -8, 0), arm.GetGlobalLocation() - body.GetGlobalLocation());
         }
 
-        ExtraPunchTime += 0.5f * delta;
-        if (ExtraPunchTime > 2f) ExtraPunchTime = 2f;
+        if (PunchGoingOut)
+        {
+            ExtraPunchRange += delta * 2;
+            if (ExtraPunchRange >= 2)
+            {
+                PunchGoingOut = false;
+                PunchComingBack = true;
+            }
+        }
+        else if (PunchComingBack)
+        {
+            ExtraPunchRange -= delta * 1.5f;
+            if (ExtraPunchRange <= -1.5f)
+            {
+                PunchComingBack = false;
+                ExtraPunchRange = 0;
+            }
+        }
+
+        //ExtraPunchTime += 0.5f * delta;
+        //if (ExtraPunchTime > 2f) ExtraPunchTime = 2f;
 
 
         /*
@@ -199,6 +223,8 @@ public class Combatant : Spatial
             if (@event.IsActionReleased("move_left")) MoveLeft = false;
             if (@event.IsActionPressed("move_right")) MoveRight = true;
             if (@event.IsActionReleased("move_right")) MoveRight = false;
+
+            if (@event.IsActionReleased("punch") && !PunchGoingOut && !PunchComingBack) PunchGoingOut = true;
         }
     }
 }
