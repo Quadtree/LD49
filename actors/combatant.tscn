@@ -23,47 +23,47 @@ size = Vector3( 0.4, 4, 0.4 )
 [node name="Combatant" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="RigidBody" type="RigidBody" parent="."]
+[node name="Wheels" type="RigidBody" parent="."]
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 
-[node name="LeftWheel" type="CollisionShape" parent="RigidBody"]
+[node name="LeftWheel" type="CollisionShape" parent="Wheels"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.6 )
 shape = SubResource( 1 )
 
-[node name="RightWheel" type="CollisionShape" parent="RigidBody"]
+[node name="RightWheel" type="CollisionShape" parent="Wheels"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.6 )
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Wheels"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.6 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="MeshInstance2" type="MeshInstance" parent="RigidBody"]
+[node name="MeshInstance2" type="MeshInstance" parent="Wheels"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.6 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="MeshInstance3" type="MeshInstance" parent="RigidBody"]
+[node name="MeshInstance3" type="MeshInstance" parent="Wheels"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00239968, 0.00451446, 0.794312 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
-[node name="RigidBody2" type="RigidBody" parent="."]
+[node name="Body" type="RigidBody" parent="."]
 transform = Transform( 0.959166, -0.282844, 0, 0.282844, 0.959166, 0, 0, 0, 1, -0.499804, 1.69491, 0 )
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
+[node name="CollisionShape" type="CollisionShape" parent="Body"]
 shape = SubResource( 5 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody2"]
+[node name="MeshInstance" type="MeshInstance" parent="Body"]
 mesh = SubResource( 6 )
 material/0 = null
 
 [node name="HingeJoint" type="HingeJoint" parent="."]
-nodes/node_a = NodePath("../RigidBody")
-nodes/node_b = NodePath("../RigidBody2")
+nodes/node_a = NodePath("../Wheels")
+nodes/node_b = NodePath("../Body")
