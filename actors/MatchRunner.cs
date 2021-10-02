@@ -96,6 +96,7 @@ public class MatchRunner : Spatial
         foreach (var c in GetTree().CurrentScene.FindChildrenByType<Combatant>(0))
         {
             c.QueueFree();
+            c.Name += "_X";
         }
 
         var player = CombatantTypes[PlayerCombantantType].Instance<Combatant>();
