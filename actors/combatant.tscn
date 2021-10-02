@@ -75,6 +75,9 @@ shape = SubResource( 5 )
 mesh = SubResource( 6 )
 material/0 = null
 
+[node name="ArmJointCenter" type="Spatial" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0273581, 2.31492, 0 )
+
 [node name="Generic6DOFJoint" type="Generic6DOFJoint" parent="."]
 nodes/node_a = NodePath("../Wheels")
 nodes/node_b = NodePath("../Body")
@@ -96,6 +99,6 @@ material/0 = null
 shape = SubResource( 8 )
 
 [node name="ArmJoint" type="Generic6DOFJoint" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350058, 3.13678, -0.00378227 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350058, 4.24078, -0.00378227 )
 nodes/node_a = NodePath("../Body")
 nodes/node_b = NodePath("../Arm")
