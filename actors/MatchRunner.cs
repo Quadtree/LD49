@@ -157,4 +157,16 @@ public class MatchRunner : Spatial
 
         Console.WriteLine($"Restarting Match: OpponentCombatantType={OpponentCombatantType} OpponentBalanceAIType={OpponentBalanceAIType} OpponentPunchAIType={OpponentPunchAIType}");
     }
+
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+
+        if (OS.IsDebugBuild())
+        {
+            if (@event.IsActionPressed("random_new_match")) RestartMatch();
+        }
+
+
+    }
 }
