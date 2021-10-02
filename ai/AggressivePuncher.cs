@@ -35,7 +35,7 @@ public class AggressivePuncher : Spatial
         if (Util.random() < delta * ChanceOfPunch)
         {
             var enemy = GetTree().CurrentScene.FindChildByName<Combatant>("Player", 0);
-            if (enemy.FindChildByName<Spatial>("Body").GetGlobalLocation().DistanceTo(cmb.FindChildByName<Spatial>("Body").GetGlobalLocation()) < 4)
+            if (enemy != null && enemy.FindChildByName<Spatial>("Body").GetGlobalLocation().DistanceTo(cmb.FindChildByName<Spatial>("Body").GetGlobalLocation()) < 4)
             {
                 cmb.Punch();
             }

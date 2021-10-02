@@ -54,7 +54,7 @@ public class Combatant : Spatial
 
     private void ArmHitSomething(Node other)
     {
-        Console.WriteLine($"ARM HIT {other}");
+        //Console.WriteLine($"ARM HIT {other}");
 
         if (other.Name == "Arm" && PunchGoingOut)
         {

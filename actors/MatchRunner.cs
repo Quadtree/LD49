@@ -82,6 +82,7 @@ public class MatchRunner : Spatial
 
         if (PlayerScore >= PointsToWinMatch)
         {
+            Console.WriteLine("Player has won the match");
             RestartMatch();
         }
 
@@ -90,12 +91,14 @@ public class MatchRunner : Spatial
 
     public void RestartPoint()
     {
+        Console.WriteLine($"Starting Point: PlayerScore={PlayerScore} OpponentScore={OpponentScore}");
+
         foreach (var c in GetTree().CurrentScene.FindChildrenByType<Combatant>(0))
         {
             c.QueueFree();
         }
 
-        var player = CombatantTypes[Util.RandInt(0, CombatantTypes.Count)].Instance<Combatant>();
+        var player = CombatantTypes[PlayerCombantantType].Instance<Combatant>();
         player.IsPlayerControlled = true;
         player.Name = "Player";
         GetTree().CurrentScene.AddChild(player);
@@ -124,5 +127,7 @@ public class MatchRunner : Spatial
         OpponentCombatantType = Util.RandInt(0, CombatantTypes.Count);
         OpponentBalanceAIType = Util.RandInt(0, MovementAIs.Count);
         OpponentPunchAIType = Util.RandInt(0, PunchingAIs.Count);
+
+        Console.WriteLine($"Restarting Match: OpponentCombatantType={OpponentCombatantType} OpponentBalanceAIType={OpponentBalanceAIType} OpponentPunchAIType={OpponentPunchAIType}");
     }
 }
