@@ -56,10 +56,20 @@ public class Combatant : Spatial
             var angle = Mathf.Atan2(pos.y - armRootLocation.origin.y, -pos.x - -armRootLocation.origin.x) * (180 / Mathf.Pi);
             var dist = new Vector3(pos.x, pos.y, 0).DistanceTo(new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0));
 
-            Console.WriteLine($"angle={angle} dist={dist}");
+            dist = Mathf.Min(dist, 2);
+
+            var od = dist;
+
+            dist = 1;
+
+            //Console.WriteLine($"armRootLocation={armRootLocation} pos={pos}");
+            Console.WriteLine($"angle={angle} dist={dist} od={od}");
 
             armJoint.AngularLimitZ__lowerAngle = angle - 0.05f;
             armJoint.AngularLimitZ__upperAngle = angle + 0.05f;
+
+            armJoint.LinearLimitY__lowerDistance = dist - 0.01f;
+            armJoint.LinearLimitY__upperDistance = dist + 0.01f;
         }
         else
         {
