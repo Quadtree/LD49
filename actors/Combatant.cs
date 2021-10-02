@@ -67,7 +67,10 @@ public class Combatant : Spatial
 
             //Console.WriteLine(angle.origin);
 
-            var angle = -Mathf.Atan2(pos.y - armRootLocation.origin.y, pos.x - armRootLocation.origin.x) * (180 / Mathf.Pi) + 0;
+            var zRot = new Quat(body.GlobalTransform.basis).GetEuler().z;
+
+            var angle = (-Mathf.Atan2(pos.y - armRootLocation.origin.y, pos.x - armRootLocation.origin.x) + zRot) * (180 / Mathf.Pi) + 90;
+
             var dist = new Vector3(pos.x, pos.y, 0).DistanceTo(new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0));
 
             dist = Mathf.Min(dist, 2);
@@ -77,7 +80,7 @@ public class Combatant : Spatial
             dist = 1;
 
             //Console.WriteLine($"armRootLocation={armRootLocation} pos={pos}");
-            Console.WriteLine($"angle={angle} dist={dist} od={od}");
+            Console.WriteLine($"angle={angle} dist={dist} od={od} zRot={zRot}");
 
             armJoint.AngularLimitZ__lowerAngle = Util.WrapDegrees(angle - 0.05f);
             armJoint.AngularLimitZ__upperAngle = Util.WrapDegrees(angle + 0.05f);
