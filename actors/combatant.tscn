@@ -110,8 +110,6 @@ shape = SubResource( 8 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350058, 1.95244, -0.00378227 )
 nodes/node_a = NodePath("../Body")
 nodes/node_b = NodePath("../Arm")
-linear_limit_x/softness = 8.0
-linear_limit_y/softness = 8.0
 
 [node name="MercyStabilizer" type="Generic6DOFJoint" parent="."]
 nodes/node_a = NodePath("../Body")
