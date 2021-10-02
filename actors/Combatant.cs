@@ -228,17 +228,7 @@ public class Combatant : Spatial
         body.ApplyImpulse(wheels.GetGlobalLocation() - body.GetGlobalLocation(), new Vector3(targetSpeed * 1f, 0, 0));
         */
 
-        {
-            var body = this.FindChildByName<RigidBody>("Body");
 
-            var armRootLocation = this.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
-            var bodyRotation = body.Rotation.z;
-
-            if (armRootLocation.origin.y < 1f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2)
-            {
-                GetTree().ChangeScene("res://maps/default.tscn");
-            }
-        }
 
     }
 

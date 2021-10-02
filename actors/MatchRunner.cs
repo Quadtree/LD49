@@ -5,10 +5,7 @@ using System.Linq;
 
 public class MatchRunner : Spatial
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
+    // Scores in the current match
     public int PlayerScore = 0;
     public int OpponentScore = 0;
 
@@ -21,6 +18,14 @@ public class MatchRunner : Spatial
     [Export]
     public Array<PackedScene> PunchingAIs;
 
+    [Export]
+    public int MatchesToWinTournament = 3;
+
+    [Export]
+    public int PointsToWinMatch = 3;
+
+    public int MatchNumber = 0;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -30,10 +35,46 @@ public class MatchRunner : Spatial
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (GetTree().CurrentScene.FindChildrenByType<Combatant>(0).Count() == 0)
+        var combatants = GetTree().CurrentScene.FindChildrenByType<Combatant>(0);
+
+        var any = false;
+
+        foreach (var c in combatants)
         {
-            RestartMatch();
+            any = true;
+            var body = c.FindChildByName<RigidBody>("Body");
+
+            var armRootLocation = c.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
+            var bodyRotation = body.Rotation.z;
+
+            if (armRootLocation.origin.y < 1f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2)
+            {
+                Loses(c);
+            }
         }
+
+        if (!any) RestartMatch();
+    }
+
+    public void Loses(Combatant combatant)
+    {
+        if (combatant.IsPlayerControlled)
+            OpponentScore++;
+        else
+            PlayerScore++;
+
+        if (OpponentScore >= PointsToWinMatch)
+        {
+            // @TODO: Show "you lose the tournament" screen
+        }
+
+        if (PlayerScore >= PointsToWinMatch)
+        {
+            PlayerScore = 0;
+            OpponentScore = 0;
+        }
+
+        RestartMatch();
     }
 
     public void RestartMatch()
