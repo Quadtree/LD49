@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/CombatantSelector.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/combatant.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/cmb_types/mini.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/cmb_types/meteor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/cmb_types/destructor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/cmb_types/steamroller.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Environment" id=2]
 background_mode = 1
@@ -45,26 +49,27 @@ MercyStabilityTime = 10000.0
 [node name="CombatantSelector2" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.526585, 0, 0.850123, 0, 1, 0, -0.850123, 0, -0.526585, -6.20479, 1.04011, -3.18089 )
 
-[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector2" instance=ExtResource( 2 )]
-MercyStabilityTime = 10000.0
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.331334, 0 )
+MercyStabilityTime = 400000.0
 
 [node name="CombatantSelector4" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.914056, 0, 0.405588, 0, 1, 0, -0.405588, 0, -0.914056, -9.73271, 1.0401, 1.56475 )
 
-[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector4" instance=ExtResource( 2 )]
-MercyStabilityTime = 10000.0
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector4" instance=ExtResource( 5 )]
+MercyStabilityTime = 400000.0
 
 [node name="CombatantSelector3" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.526585, 0, -0.850123, 0, 1, 0, 0.850123, 0, -0.526585, 6.56709, 1.04011, -3.2417 )
 
-[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector3" instance=ExtResource( 2 )]
-MercyStabilityTime = 10000.0
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector3" instance=ExtResource( 6 )]
+MercyStabilityTime = 400000.0
 
 [node name="CombatantSelector5" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.914056, 0, -0.405588, 0, 1, 0, 0.405588, 0, -0.914056, 11.0226, 1.04011, 0.819874 )
 
-[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector5" instance=ExtResource( 2 )]
-MercyStabilityTime = 10000.0
+[node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector5" instance=ExtResource( 4 )]
+MercyStabilityTime = 4e+06
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 3 )
