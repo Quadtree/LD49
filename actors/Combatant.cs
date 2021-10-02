@@ -39,7 +39,20 @@ public class Combatant : Spatial
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        var arm = this.FindChildByName<RigidBody>("Arm");
+        arm.Connect("body_entered", this, nameof(ArmHitSomething));
+    }
 
+    private void ArmHitSomething(Node other)
+    {
+        Console.WriteLine($"ARM HIT {other}");
+
+        if (other.Name == "Arm" && PunchGoingOut)
+        {
+            PunchGoingOut = false;
+            PunchComingBack = true;
+            ExtraPunchRange = -0.5f;
+        }
     }
 
     public void SetPunchDestFromGlobal(Vector3 pos)
@@ -227,7 +240,18 @@ public class Combatant : Spatial
             if (@event.IsActionPressed("move_right")) MoveRight = true;
             if (@event.IsActionReleased("move_right")) MoveRight = false;
 
-            if (@event.IsActionReleased("punch") && !PunchGoingOut && !PunchComingBack) PunchGoingOut = true;
+            if (@event.IsActionReleased("punch")) Punch();
         }
+    }
+
+    public bool Punch()
+    {
+        if (!PunchGoingOut && !PunchComingBack)
+        {
+            PunchGoingOut = true;
+            return true;
+        }
+
+        return false;
     }
 }

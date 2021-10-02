@@ -7,6 +7,8 @@ public class AggressivePuncher : Spatial
     // private int a = 2;
     // private string b = "text";
 
+    float Height = 0;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -17,6 +19,19 @@ public class AggressivePuncher : Spatial
     public override void _Process(float delta)
     {
         var cmb = GetParent<Combatant>();
-        cmb.DesiredArmPos = new Vector3(5, 0, 0);
+        cmb.DesiredArmPos = new Vector3(5, Height, 0);
+
+        if (Util.random() < delta / 4)
+        {
+            Height = (Util.random() - 0.5f) * 5;
+        }
+
+        var enemy = GetTree().CurrentScene.FindChildByName<Combatant>("Player", 0);
+        if (enemy.FindChildByName<Spatial>("Body").GetGlobalLocation().DistanceTo(cmb.FindChildByName<Spatial>("Body").GetGlobalLocation()) < 4)
+        {
+            cmb.Punch();
+        }
+
+        Console.WriteLine(enemy.GetGlobalLocation().DistanceTo(cmb.GetGlobalLocation()));
     }
 }

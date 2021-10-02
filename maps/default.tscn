@@ -45,12 +45,9 @@ shape = SubResource( 1 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Combatant" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68409, 5.24089, 0 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0 )
 IsPlayerControlled = true
-
-[node name="PIDBalancer" parent="Combatant" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68409, -5.24089, 0 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28077, 9.42764 )
@@ -80,7 +77,7 @@ mesh = SubResource( 9 )
 material/0 = null
 
 [node name="Combatant2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.83277, 3.10448, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0 )
 
 [node name="PIDBalancer" parent="Combatant2" instance=ExtResource( 1 )]
 
