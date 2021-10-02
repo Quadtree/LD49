@@ -84,7 +84,7 @@ nodes/node_b = NodePath("../Body")
 angular_limit_z/enabled = false
 
 [node name="Arm" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0273581, 5.03473, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0273581, 4.20282, 0 )
 mass = 0.5
 can_sleep = false
 axis_lock_linear_z = true
@@ -102,3 +102,5 @@ shape = SubResource( 8 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350058, 4.24078, -0.00378227 )
 nodes/node_a = NodePath("../Body")
 nodes/node_b = NodePath("../Arm")
+linear_limit_y/upper_distance = 2.0
+linear_limit_y/lower_distance = 2.0
