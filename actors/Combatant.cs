@@ -21,8 +21,8 @@ public class Combatant : Spatial
     [Export]
     float PunchRange = 2.5f;
 
-    Vector3 CurArmPos = new Vector3();
-    Vector3 DesiredArmPos = new Vector3();
+    public Vector3 CurArmPos = new Vector3();
+    public Vector3 DesiredArmPos = new Vector3();
 
     [Export]
     float ArmMoveSpeed = 0.2f;

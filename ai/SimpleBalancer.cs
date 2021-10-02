@@ -26,6 +26,8 @@ public class SimpleBalancer : Spatial
 
         Console.WriteLine(bodyRotation);
 
+        cmb.DesiredArmPos = new Vector3(5, 0, 0);
+
         if (bodyRotation > 0)
         {
             cmb.MoveLeft = true;
