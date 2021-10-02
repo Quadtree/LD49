@@ -64,9 +64,10 @@ public class MatchRunner : Spatial
             var armRootLocation = c.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
             var bodyRotation = body.Rotation.z;
 
-            if (armRootLocation.origin.y < 1f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2)
+            if (armRootLocation.origin.y < 0f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2)
             {
                 Loses(c);
+                break;
             }
         }
 
