@@ -34,6 +34,8 @@ public class Combatant : Spatial
 
     float ExtraPunchRange = 0;
 
+    public float TargetSpeed = 0f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -69,14 +71,15 @@ public class Combatant : Spatial
             }
         }
 
-        float targetSpeed = 0f;
-        if (MoveLeft && !MoveRight) targetSpeed = -1f;
-        if (!MoveLeft && MoveRight) targetSpeed = 1f;
+        if (MoveLeft && !MoveRight) TargetSpeed = -1f;
+        if (!MoveLeft && MoveRight) TargetSpeed = 1f;
 
         var wheelJoint = this.FindChildByName<Generic6DOFJoint>("Generic6DOFJoint");
         wheelJoint.AngularMotorZ__enabled = true;
         wheelJoint.AngularMotorZ__forceLimit = 40;
-        wheelJoint.AngularMotorZ__targetVelocity = -targetSpeed * 3;
+        wheelJoint.AngularMotorZ__targetVelocity = -TargetSpeed * 3;
+
+        TargetSpeed = 0;
 
         if (IsPlayerControlled)
         {
