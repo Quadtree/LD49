@@ -105,3 +105,11 @@ nodes/node_a = NodePath("../Body")
 nodes/node_b = NodePath("../Arm")
 linear_limit_y/upper_distance = 2.0
 linear_limit_y/lower_distance = 2.0
+
+[node name="MercyStabilizer" type="Generic6DOFJoint" parent="."]
+nodes/node_a = NodePath("../Body")
+linear_limit_x/enabled = false
+angular_limit_x/enabled = false
+linear_limit_y/enabled = false
+angular_limit_y/enabled = false
+linear_limit_z/enabled = false

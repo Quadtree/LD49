@@ -15,6 +15,9 @@ public class Combatant : Spatial
 
     private Vector3 ArmJointRelative = new Vector3(-1000000, 0, 0);
 
+    [Export]
+    float MercyStabilityTime = 4f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -24,12 +27,16 @@ public class Combatant : Spatial
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (ArmJointRelative.x < -10000)
+        if (MercyStabilityTime > 0)
         {
-            var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
-            var body = this.FindChildByName<RigidBody>("Body");
+            MercyStabilityTime -= delta;
+            //var body = this.FindChildByName<RigidBody>("Body");
+            //body.Rotation = new Vector3(0, 0, 0);
 
-            ArmJointRelative = armJoint.Translation - body.Translation;
+            if (MercyStabilityTime <= 0)
+            {
+                this.FindChildByName<Generic6DOFJoint>("MercyStabilizer").QueueFree();
+            }
         }
 
         float targetSpeed = 0f;
