@@ -60,3 +60,6 @@ shape = SubResource( 6 )
 
 [node name="MeshInstance" parent="Body" index="1"]
 mesh = SubResource( 7 )
+
+[node name="ArmJointCenter" parent="Body" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0273581, 1.22754, 0 )
