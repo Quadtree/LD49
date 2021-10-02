@@ -113,3 +113,5 @@ angular_limit_x/enabled = false
 linear_limit_y/enabled = false
 angular_limit_y/enabled = false
 linear_limit_z/enabled = false
+angular_limit_z/upper_angle = 10.0
+angular_limit_z/lower_angle = -10.0
