@@ -3,10 +3,12 @@
 * Multiple types of enemies
 * Score keeping
 * Win condition
+* Different arenas
 
 # TODO
-* Different arenas
 * Fighter selection
+* Win screen
+* Lose screen
 * Final graphics
 * Real arm graphics
 * Sound effects
