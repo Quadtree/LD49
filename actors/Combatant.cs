@@ -29,7 +29,7 @@ public class Combatant : Spatial
         if (!MoveLeft && MoveRight) targetSpeed = 1f;
 
         wheelJoint.Motor__enable = true;
-        wheelJoint.Motor__maxImpulse = 100f;
+        wheelJoint.Motor__maxImpulse = 1000f;
         wheelJoint.Motor__targetVelocity = -targetSpeed * 4;
     }
 
