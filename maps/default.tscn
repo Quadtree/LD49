@@ -73,3 +73,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.912577, 0, 32.509 )
 mesh = SubResource( 9 )
 material/0 = null
+
+[node name="Combatant2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.83277, 3.10448, 0 )
+MercyStabilityTime = 1000.0
