@@ -22,15 +22,21 @@ public class Combatant : Spatial
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        var wheelJoint = this.FindChildByType<HingeJoint>();
-
         float targetSpeed = 0f;
         if (MoveLeft && !MoveRight) targetSpeed = -1f;
         if (!MoveLeft && MoveRight) targetSpeed = 1f;
 
+        /*
+        var wheelJoint = this.FindChildByType<HingeJoint>();
         wheelJoint.Motor__enable = true;
         wheelJoint.Motor__maxImpulse = 1000f;
         wheelJoint.Motor__targetVelocity = -targetSpeed * 4;
+        */
+
+        var wheels = this.FindChildByName<RigidBody>("Wheels");
+        var body = this.FindChildByName<RigidBody>("Body");
+
+        wheels.ApplyTorqueImpulse(new Vector3(0, 0, targetSpeed * -0.05f));
     }
 
     public override void _Input(InputEvent @event)
