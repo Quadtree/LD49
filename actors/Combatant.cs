@@ -159,6 +159,15 @@ public class Combatant : Spatial
         wheels.ApplyTorqueImpulse(new Vector3(0, 0, targetSpeed * -0.05f));
         body.ApplyImpulse(wheels.GetGlobalLocation() - body.GetGlobalLocation(), new Vector3(targetSpeed * 1f, 0, 0));
         */
+
+        {
+            var armRootLocation = this.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
+            if (armRootLocation.origin.y < 1f)
+            {
+                GetTree().ChangeScene("res://maps/default.tscn");
+            }
+        }
+
     }
 
     public override void _Input(InputEvent @event)
