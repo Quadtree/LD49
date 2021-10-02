@@ -33,6 +33,20 @@ public class Combatant : Spatial
 
     }
 
+    public void SetPunchDestFromGlobal(Vector3 pos)
+    {
+        var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
+        var body = this.FindChildByName<RigidBody>("Body");
+
+        var armRootLocation = this.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
+
+        //GetTree().CurrentScene.FindChildByName<Spatial>("Debug0").SetGlobalLocation(armRootLocation.origin);
+        //GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
+        //GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
+
+        DesiredArmPos = new Vector3(pos.x, Mathf.Max(pos.y, 0.5f), 0) - new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0);
+    }
+
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
@@ -70,17 +84,7 @@ public class Combatant : Spatial
             if (curPos.Contains("position"))
             {
                 var pos = (Vector3)curPos["position"];
-
-                var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
-                var body = this.FindChildByName<RigidBody>("Body");
-
-                var armRootLocation = this.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
-
-                //GetTree().CurrentScene.FindChildByName<Spatial>("Debug0").SetGlobalLocation(armRootLocation.origin);
-                //GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
-                //GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
-
-                DesiredArmPos = new Vector3(pos.x, Mathf.Max(pos.y, 0.5f), 0) - new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0);
+                SetPunchDestFromGlobal(pos);
             }
         }
 
