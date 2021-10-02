@@ -82,8 +82,8 @@ public class Combatant : Spatial
             //Console.WriteLine($"armRootLocation={armRootLocation} pos={pos}");
             Console.WriteLine($"angle={angle} dist={dist} od={od} zRot={zRot}");
 
-            armJoint.AngularLimitZ__lowerAngle = Util.WrapDegrees(angle - 0.05f);
-            armJoint.AngularLimitZ__upperAngle = Util.WrapDegrees(angle + 0.05f);
+            armJoint.AngularLimitZ__lowerAngle = angle - 0.05f;
+            armJoint.AngularLimitZ__upperAngle = angle + 0.05f;
 
             //armJoint.LinearLimitY__lowerDistance = dist - 0.01f;
             //armJoint.LinearLimitY__upperDistance = dist + 0.01f;
