@@ -19,7 +19,9 @@ public class Combatant : Spatial
     float MercyStabilityTime = 4f;
 
     [Export]
-    float PunchRange = 2.5f;
+    float PunchRange = 2.0f;
+
+    float ExtraPunchTime = 1f;
 
     public Vector3 CurArmPos = new Vector3();
     public Vector3 DesiredArmPos = new Vector3();
@@ -107,7 +109,17 @@ public class Combatant : Spatial
 
             var relPos = CurArmPos;
 
-            if (relPos.Length() > PunchRange) relPos = relPos.Normalized() * PunchRange;
+            var punchRange = PunchRange;
+            if (relPos.Length() > PunchRange)
+            {
+                if (ExtraPunchTime >= delta)
+                {
+                    ExtraPunchTime -= delta;
+                    punchRange += 1.5f;
+                }
+            }
+
+            if (relPos.Length() > punchRange) relPos = relPos.Normalized() * punchRange;
 
             var rotQuat = new Quat(armRootLocation.Inverse().basis);
 
@@ -150,6 +162,9 @@ public class Combatant : Spatial
 
             body.AddForce(new Vector3(0, -8, 0), arm.GetGlobalLocation() - body.GetGlobalLocation());
         }
+
+        ExtraPunchTime += 0.15f * delta;
+        if (ExtraPunchTime > 1f) ExtraPunchTime = 1f;
 
 
         /*
