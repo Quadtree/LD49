@@ -45,6 +45,9 @@ public class Combatant : Spatial
     [Export]
     public float WheelMotorSpeed = 1f;
 
+    [Export]
+    public string CmbName = "???";
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {

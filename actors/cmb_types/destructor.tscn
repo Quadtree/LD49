@@ -24,6 +24,7 @@ radius = 0.4
 PunchRange = 1.5
 ArmMoveSpeed = 4.0
 WheelMotorPower = 2.0
+CmbName = "Destructorizer"
 
 [node name="LeftWheel" parent="Wheels" index="0"]
 shape = SubResource( 3 )

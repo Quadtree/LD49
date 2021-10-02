@@ -24,6 +24,7 @@ height = 0.8
 size = Vector3( 0.1, 0.1, 1.2 )
 
 [node name="Combatant" instance=ExtResource( 1 )]
+CmbName = "Steamroller"
 
 [node name="LeftWheel" parent="Wheels" index="0"]
 shape = SubResource( 1 )

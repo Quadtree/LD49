@@ -18,10 +18,16 @@ public class InGameUI : Control
     {
         var mr = GetTree().CurrentScene.FindChildByType<MatchRunner>(0);
 
+        var player = GetTree().CurrentScene.GetNode<Combatant>("Player");
+        var opponent = GetTree().CurrentScene.GetNode<Combatant>("Opponent");
+
         if (mr != null)
         {
             GetNode<Label>("GridContainer/LeftPoints").Text = mr.OpponentScore.ToString();
             GetNode<Label>("GridContainer/RightPoints").Text = mr.PlayerScore.ToString();
+
+            GetNode<Label>("GridContainer/LeftCombatantName").Text = opponent?.CmbName ?? "???";
+            GetNode<Label>("GridContainer/RightCombatantName").Text = player?.CmbName ?? "???";
         }
     }
 }
