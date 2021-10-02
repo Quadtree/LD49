@@ -26,7 +26,7 @@ public class Combatant : Spatial
         if (MoveLeft && !MoveRight) targetSpeed = -1f;
         if (!MoveLeft && MoveRight) targetSpeed = 1f;
 
-        var wheelJoint = this.FindChildByType<Generic6DOFJoint>();
+        var wheelJoint = this.FindChildByName<Generic6DOFJoint>("Generic6DOFJoint");
         wheelJoint.AngularMotorZ__enabled = true;
         wheelJoint.AngularMotorZ__forceLimit = 1000f;
         wheelJoint.AngularMotorZ__targetVelocity = -targetSpeed * 4;
@@ -44,9 +44,16 @@ public class Combatant : Spatial
         if (curPos.Contains("position"))
         {
             pos = (Vector3)curPos["position"];
-            Console.WriteLine(pos);
+            //Console.WriteLine(pos);
 
-            
+            var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
+            var body = this.FindChildByName<RigidBody>("Body");
+
+
+
+            var angle = body.GlobalTransform * armJoint.Transform;
+
+            Console.WriteLine(angle.origin);
         }
         else
         {
