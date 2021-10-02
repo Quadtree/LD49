@@ -51,6 +51,10 @@ public class Combatant : Spatial
 
             var armRootLocation = body.GlobalTransform * armJoint.Transform;
 
+            GetTree().CurrentScene.FindChildByName<Spatial>("Debug0").SetGlobalLocation(armRootLocation.origin);
+            GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
+            GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
+
             //Console.WriteLine(angle.origin);
 
             var angle = Mathf.Atan2(pos.y - armRootLocation.origin.y, -pos.x - -armRootLocation.origin.x) * (180 / Mathf.Pi);

@@ -61,7 +61,7 @@ mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="Body" type="RigidBody" parent="."]
-transform = Transform( 0.959166, -0.282844, 0, 0.282844, 0.959166, 0, 0, 0, 1, -0.499804, 1.69491, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.695, 0 )
 can_sleep = false
 axis_lock_linear_z = true
 axis_lock_angular_x = true
@@ -80,7 +80,7 @@ nodes/node_b = NodePath("../Body")
 angular_limit_z/enabled = false
 
 [node name="Arm" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23988, 4.40311, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0273581, 4.16701, 0 )
 mass = 0.5
 can_sleep = false
 
@@ -92,7 +92,7 @@ material/0 = null
 shape = SubResource( 8 )
 
 [node name="ArmJoint" type="Generic6DOFJoint" parent="."]
-transform = Transform( 0.957948, -0.286943, 0, 0.286943, 0.957948, 0, 0, 0, 1, -0.838475, 2.80298, -0.00378227 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350058, 3.35594, -0.00378227 )
 nodes/node_a = NodePath("../Body")
 nodes/node_b = NodePath("../Arm")
 linear_spring_y/stiffness = 2.0
