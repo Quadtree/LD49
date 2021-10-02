@@ -93,6 +93,22 @@ public class Combatant : Spatial
         {
             var armDelta = (DesiredArmPos - CurArmPos).Normalized() * ArmMoveSpeed * delta;
             CurArmPos += armDelta;
+
+            var effectivePunchRange = PunchRange;
+
+            if (CurArmPos.Length() > PunchRange)
+            {
+                if (ExtraPunchTime >= delta)
+                {
+                    ExtraPunchTime -= delta;
+                    effectivePunchRange += 1.5f;
+                }
+            }
+
+            if (CurArmPos.Length() > effectivePunchRange)
+            {
+                CurArmPos = CurArmPos.Normalized() * effectivePunchRange;
+            }
         }
 
         //Console.WriteLine(pos);
@@ -108,18 +124,6 @@ public class Combatant : Spatial
             //GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
 
             var relPos = CurArmPos;
-
-            var punchRange = PunchRange;
-            if (relPos.Length() > PunchRange)
-            {
-                if (ExtraPunchTime >= delta)
-                {
-                    ExtraPunchTime -= delta;
-                    punchRange += 1.5f;
-                }
-            }
-
-            if (relPos.Length() > punchRange) relPos = relPos.Normalized() * punchRange;
 
             var rotQuat = new Quat(armRootLocation.Inverse().basis);
 
@@ -163,8 +167,8 @@ public class Combatant : Spatial
             body.AddForce(new Vector3(0, -8, 0), arm.GetGlobalLocation() - body.GetGlobalLocation());
         }
 
-        ExtraPunchTime += 0.15f * delta;
-        if (ExtraPunchTime > 1f) ExtraPunchTime = 1f;
+        ExtraPunchTime += 0.5f * delta;
+        if (ExtraPunchTime > 2f) ExtraPunchTime = 2f;
 
 
         /*
