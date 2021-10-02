@@ -1,0 +1,78 @@
+[gd_scene format=2]
+
+[node name="InGameUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -250.0
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 224.495
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 250, 0 )
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftCombatantName" type="Label" parent="GridContainer"]
+margin_right = 225.0
+margin_bottom = 14.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "LeftCombantant"
+align = 2
+
+[node name="Versus" type="Label" parent="GridContainer"]
+margin_left = 229.0
+margin_right = 271.0
+margin_bottom = 14.0
+text = "   vs.   "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightCombatantName" type="Label" parent="GridContainer"]
+margin_left = 275.0
+margin_right = 500.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "RightCombatant"
+
+[node name="LeftPoints" type="Label" parent="GridContainer"]
+margin_top = 18.0
+margin_right = 225.0
+margin_bottom = 32.0
+text = "0"
+align = 2
+
+[node name="VSeparator" type="VSeparator" parent="GridContainer"]
+margin_left = 229.0
+margin_top = 18.0
+margin_right = 271.0
+margin_bottom = 32.0
+
+[node name="RightPoints" type="Label" parent="GridContainer"]
+margin_left = 275.0
+margin_top = 18.0
+margin_right = 500.0
+margin_bottom = 32.0
+text = "0"
+
+[node name="MatchName" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -250.0
+margin_top = 8.8194
+margin_right = 250.0
+margin_bottom = 40.0
+text = "Somethingfinals
+"
+align = 1
