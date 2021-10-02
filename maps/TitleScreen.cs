@@ -18,9 +18,7 @@ public class TitleScreen : Control
     {
         if (Input.IsMouseButtonPressed((int)ButtonList.Left))
         {
-            GetTree().ChangeScene("res://maps/default.tscn");
+            GetTree().ChangeScene("res://maps/SetupScreen.tscn");
         }
     }
-
-
 }
