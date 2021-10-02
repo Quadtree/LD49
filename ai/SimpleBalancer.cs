@@ -26,7 +26,22 @@ public class SimpleBalancer : Spatial
 
         Console.WriteLine(bodyRotation);
 
-        cmb.DesiredArmPos = new Vector3(5, 0, 0);
+        if (Mathf.Abs(bodyRotation) < 0.4)
+        {
+            cmb.DesiredArmPos = new Vector3(5, 0, 0);
+        }
+        else
+        {
+            if (bodyRotation > 0)
+            {
+                cmb.DesiredArmPos = new Vector3(5, 0, 0);
+            }
+
+            if (bodyRotation < 0)
+            {
+                cmb.DesiredArmPos = new Vector3(-5, 0, 0);
+            }
+        }
 
         if (bodyRotation > 0)
         {
