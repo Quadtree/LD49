@@ -20,6 +20,12 @@ public class InGameUI : Control
         ""
     };
 
+    static string[] MESSAGES = {
+        "YouWinMessage",
+        "YouLoseMessage",
+        "MatchStartMessage",
+    };
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
@@ -38,5 +44,26 @@ public class InGameUI : Control
 
             GetNode<Label>("MatchName").Text = MATCH_NAMES[mr.MatchNumber];
         }
+
+        foreach (var v in MESSAGES)
+        {
+            GetNode<Label>(v).Modulate = new Color(1, 1, 1, Mathf.Max(0, GetNode<Label>(v).Modulate.a - delta));
+        }
+    }
+
+    public void PlayerWins()
+    {
+        GetNode<Label>("YouWinMessage").Modulate = new Color(1, 1, 1, 1);
+    }
+
+    public void PlayerLoses()
+    {
+        GetNode<Label>("YouLoseMessage").Modulate = new Color(1, 1, 1, 1);
+    }
+
+    public void MatchStart(int round)
+    {
+        GetNode<Label>("MatchStartMessage").Modulate = new Color(1, 1, 1, 1);
+        GetNode<Label>("MatchStartMessage").Text = $"Round {round + 1}. Fight!";
     }
 }

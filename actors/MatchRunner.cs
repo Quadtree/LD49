@@ -71,9 +71,15 @@ public class MatchRunner : Spatial
     public void Loses(Combatant combatant)
     {
         if (combatant.IsPlayerControlled)
+        {
             OpponentScore++;
+            GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.PlayerLoses();
+        }
         else
+        {
             PlayerScore++;
+            GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.PlayerWins();
+        }
 
         if (OpponentScore >= PointsToWinMatch)
         {
@@ -114,6 +120,8 @@ public class MatchRunner : Spatial
 
         opponent.AddChild(MovementAIs[OpponentBalanceAIType].Instance<Node>());
         opponent.AddChild(PunchingAIs[OpponentPunchAIType].Instance<Node>());
+
+        GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.MatchStart(PlayerScore + OpponentScore);
     }
 
     public void RestartMatch()
