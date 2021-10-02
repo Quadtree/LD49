@@ -83,6 +83,7 @@ public class MatchRunner : Spatial
         if (PlayerScore >= PointsToWinMatch)
         {
             Console.WriteLine("Player has won the match");
+            MatchNumber++;
             RestartMatch();
         }
 

@@ -13,6 +13,13 @@ public class InGameUI : Control
 
     }
 
+    static string[] MATCH_NAMES = {
+        "Quarterfinals",
+        "Semifinals",
+        "Finals",
+        ""
+    };
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
@@ -28,6 +35,8 @@ public class InGameUI : Control
 
             GetNode<Label>("GridContainer/LeftCombatantName").Text = opponent?.CmbName ?? "???";
             GetNode<Label>("GridContainer/RightCombatantName").Text = player?.CmbName ?? "???";
+
+            GetNode<Label>("MatchName").Text = MATCH_NAMES[mr.MatchNumber];
         }
     }
 }
