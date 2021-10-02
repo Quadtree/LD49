@@ -11,11 +11,12 @@ public class CombatantSelector : Spatial
     public override void _Ready()
     {
         var lbl = new Label();
-        lbl.Text = "TEST1";
+        lbl.Text = this.FindChildByType<Combatant>(2).CmbName;
 
-        GetTree().CurrentScene.FindChildByType<CanvasLayer>(2).AddChild(lbl);
 
         lbl.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(this.GetGlobalLocation());
+
+        GetTree().CurrentScene.FindChildByType<CanvasLayer>(2).AddChild(lbl);
 
     }
 
