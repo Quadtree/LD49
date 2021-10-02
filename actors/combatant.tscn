@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://actors/Combatant.cs" type="Script" id=1]
 
 [sub_resource type="CylinderShape" id=1]
 height = 0.35
@@ -19,8 +21,12 @@ extents = Vector3( 0.2, 2, 0.2 )
 size = Vector3( 0.4, 4, 0.4 )
 
 [node name="Combatant" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
 
 [node name="LeftWheel" type="CollisionShape" parent="RigidBody"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.6 )
@@ -47,6 +53,9 @@ material/0 = SubResource( 4 )
 
 [node name="RigidBody2" type="RigidBody" parent="."]
 transform = Transform( 0.959166, -0.282844, 0, 0.282844, 0.959166, 0, 0, 0, 1, -0.499804, 1.69491, 0 )
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
 shape = SubResource( 5 )
