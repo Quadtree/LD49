@@ -18,6 +18,12 @@ public class SimpleBalancer : Spatial
     {
         var cmb = GetParent<Combatant>();
 
-        Console.WriteLine(cmb);
+
+
+        var body = cmb.FindChildByName<RigidBody>("Body");
+
+        var bodyRotation = body.Rotation.z;
+
+        Console.WriteLine(bodyRotation);
     }
 }
