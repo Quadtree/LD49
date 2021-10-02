@@ -21,6 +21,12 @@ public class Combatant : Spatial
     [Export]
     float PunchRange = 2.5f;
 
+    Vector3 CurArmPos = new Vector3();
+    Vector3 DesiredArmPos = new Vector3();
+
+    [Export]
+    float ArmMoveSpeed = 0.2f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -59,14 +65,11 @@ public class Combatant : Spatial
             var rayNorm = cam.ProjectRayNormal(GetViewport().GetMousePosition());
             var rayTo = raySrc + rayNorm * 100;
 
-            var pos = new Vector3();
-
             var curPos = GetWorld().DirectSpaceState.IntersectRay(raySrc, rayTo, null, 16384);
 
             if (curPos.Contains("position"))
             {
-                pos = (Vector3)curPos["position"];
-                //Console.WriteLine(pos);
+                var pos = (Vector3)curPos["position"];
 
                 var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
                 var body = this.FindChildByName<RigidBody>("Body");
@@ -77,48 +80,64 @@ public class Combatant : Spatial
                 //GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
                 //GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
 
-                var relPos = new Vector3(pos.x, Mathf.Max(pos.y, 0.5f), 0) - new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0);
-
-                if (relPos.Length() > PunchRange) relPos = relPos.Normalized() * PunchRange;
-
-                var rotQuat = new Quat(armRootLocation.Inverse().basis);
-
-                var thing = rotQuat.Xform(relPos);
-
-                //Console.WriteLine(thing);
-
-                armJoint.LinearLimitX__lowerDistance = thing.x;
-                armJoint.LinearLimitX__upperDistance = thing.x;
-                armJoint.LinearLimitY__lowerDistance = thing.y;
-                armJoint.LinearLimitY__upperDistance = thing.y;
-
-                //Console.WriteLine(angle.origin);
-
-                /*var zRot = new Quat(body.GlobalTransform.basis).GetEuler().z;
-
-                var angle = (-Mathf.Atan2(pos.y - armRootLocation.origin.y, pos.x - armRootLocation.origin.x) + zRot) * (180 / Mathf.Pi) + 90;
-
-                var dist = new Vector3(pos.x, pos.y, 0).DistanceTo(new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0));
-
-                dist = Mathf.Min(dist, 2);
-
-                var od = dist;
-
-                dist = 1;
-
-                //Console.WriteLine($"armRootLocation={armRootLocation} pos={pos}");
-                Console.WriteLine($"angle={angle} dist={dist} od={od} zRot={zRot}");
-
-                armJoint.AngularLimitZ__lowerAngle = angle - 0.05f;
-                armJoint.AngularLimitZ__upperAngle = angle + 0.05f;*/
-
-                //armJoint.LinearLimitY__lowerDistance = dist - 0.01f;
-                //armJoint.LinearLimitY__upperDistance = dist + 0.01f;
+                DesiredArmPos = new Vector3(pos.x, Mathf.Max(pos.y, 0.5f), 0) - new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0);
             }
-            else
-            {
-                Console.WriteLine("HIT NOTHING");
-            }
+        }
+
+        {
+            var armDelta = (DesiredArmPos - CurArmPos).Normalized() * ArmMoveSpeed * delta;
+            CurArmPos += armDelta;
+        }
+
+        //Console.WriteLine(pos);
+
+        {
+            var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
+            var body = this.FindChildByName<RigidBody>("Body");
+
+            var armRootLocation = this.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
+
+            //GetTree().CurrentScene.FindChildByName<Spatial>("Debug0").SetGlobalLocation(armRootLocation.origin);
+            //GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
+            //GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
+
+            var relPos = CurArmPos;
+
+            if (relPos.Length() > PunchRange) relPos = relPos.Normalized() * PunchRange;
+
+            var rotQuat = new Quat(armRootLocation.Inverse().basis);
+
+            var thing = rotQuat.Xform(relPos);
+
+            //Console.WriteLine(thing);
+
+            armJoint.LinearLimitX__lowerDistance = thing.x;
+            armJoint.LinearLimitX__upperDistance = thing.x;
+            armJoint.LinearLimitY__lowerDistance = thing.y;
+            armJoint.LinearLimitY__upperDistance = thing.y;
+
+            //Console.WriteLine(angle.origin);
+
+            /*var zRot = new Quat(body.GlobalTransform.basis).GetEuler().z;
+
+            var angle = (-Mathf.Atan2(pos.y - armRootLocation.origin.y, pos.x - armRootLocation.origin.x) + zRot) * (180 / Mathf.Pi) + 90;
+
+            var dist = new Vector3(pos.x, pos.y, 0).DistanceTo(new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0));
+
+            dist = Mathf.Min(dist, 2);
+
+            var od = dist;
+
+            dist = 1;
+
+            //Console.WriteLine($"armRootLocation={armRootLocation} pos={pos}");
+            Console.WriteLine($"angle={angle} dist={dist} od={od} zRot={zRot}");
+
+            armJoint.AngularLimitZ__lowerAngle = angle - 0.05f;
+            armJoint.AngularLimitZ__upperAngle = angle + 0.05f;*/
+
+            //armJoint.LinearLimitY__lowerDistance = dist - 0.01f;
+            //armJoint.LinearLimitY__upperDistance = dist + 0.01f;
         }
 
         {
