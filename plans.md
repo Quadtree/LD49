@@ -1,5 +1,7 @@
-# TODO
+# DONE
 * Better AI
+
+# TODO
 * Multiple types of enemies
 * Score keeping
 * Win condition

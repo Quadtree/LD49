@@ -80,6 +80,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0 )
 
 [node name="AggressivePuncher" parent="Combatant2" instance=ExtResource( 3 )]
+ChanceOfPunch = 2.0
 
 [node name="PIDBalancer" parent="Combatant2" instance=ExtResource( 1 )]
 TimeI = 1.5
