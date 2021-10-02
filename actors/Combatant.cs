@@ -220,8 +220,12 @@ public class Combatant : Spatial
         */
 
         {
+            var body = this.FindChildByName<RigidBody>("Body");
+
             var armRootLocation = this.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
-            if (armRootLocation.origin.y < 1f)
+            var bodyRotation = body.Rotation.z;
+
+            if (armRootLocation.origin.y < 1f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2)
             {
                 GetTree().ChangeScene("res://maps/default.tscn");
             }

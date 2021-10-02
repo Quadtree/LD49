@@ -32,6 +32,6 @@ public class AggressivePuncher : Spatial
             cmb.Punch();
         }
 
-        Console.WriteLine(enemy.GetGlobalLocation().DistanceTo(cmb.GetGlobalLocation()));
+        //Console.WriteLine(enemy.GetGlobalLocation().DistanceTo(cmb.GetGlobalLocation()));
     }
 }
