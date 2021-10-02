@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://ai/SlowPIDBalancer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/combatant.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://actors/cmb_types/meteor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://actors/cmb_types/steamroller.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ai/SlowPuncher.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/cmb_types/mini.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actors/cmb_types/destructor.tscn" type="PackedScene" id=11]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 10, 0.1, 2 )
@@ -79,6 +81,6 @@ mesh = SubResource( 9 )
 material/0 = null
 
 [node name="MatchRunner" parent="." instance=ExtResource( 6 )]
-CombatantTypes = [ ExtResource( 2 ), ExtResource( 8 ), ExtResource( 7 ) ]
+CombatantTypes = [ ExtResource( 2 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
 MovementAIs = [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ) ]
 PunchingAIs = [ ExtResource( 9 ), ExtResource( 3 ) ]
