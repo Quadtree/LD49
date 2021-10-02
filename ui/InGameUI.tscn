@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ui/InGameUI.cs" type="Script" id=1]
 [ext_resource path="res://fonts/audiowide_big.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/audiowide_med.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fonts/audiowide_sml.tres" type="DynamicFont" id=4]
 
 [node name="InGameUI" type="Control"]
 anchor_right = 1.0
@@ -27,33 +29,46 @@ __meta__ = {
 }
 
 [node name="LeftCombatantName" type="Label" parent="GridContainer"]
-margin_right = 225.0
-margin_bottom = 14.0
+margin_right = 231.0
+margin_bottom = 33.0
 grow_horizontal = 0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
 text = "LeftCombantant"
 align = 2
 
 [node name="Versus" type="Label" parent="GridContainer"]
-margin_left = 229.0
-margin_right = 271.0
-margin_bottom = 14.0
+margin_left = 235.0
+margin_top = 4.0
+margin_right = 298.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
 text = "   vs.   "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RightCombatantName" type="Label" parent="GridContainer"]
-margin_left = 275.0
-margin_right = 500.0
-margin_bottom = 14.0
+margin_left = 302.0
+margin_right = 530.0
+margin_bottom = 33.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
 text = "RightCombatant"
 
 [node name="LeftPoints" type="Label" parent="GridContainer"]
-margin_top = 18.0
-margin_right = 225.0
-margin_bottom = 57.0
+margin_top = 37.0
+margin_right = 231.0
+margin_bottom = 76.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
@@ -62,17 +77,18 @@ text = "0"
 align = 2
 
 [node name="Control" type="Control" parent="GridContainer"]
-margin_left = 229.0
-margin_top = 18.0
-margin_right = 271.0
-margin_bottom = 57.0
+margin_left = 235.0
+margin_top = 37.0
+margin_right = 298.0
+margin_bottom = 76.0
 
 [node name="RightPoints" type="Label" parent="GridContainer"]
-margin_left = 275.0
-margin_top = 18.0
-margin_right = 500.0
-margin_bottom = 57.0
+margin_left = 302.0
+margin_top = 37.0
+margin_right = 530.0
+margin_bottom = 76.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 text = "0"
@@ -84,6 +100,13 @@ margin_left = -250.0
 margin_top = 8.8194
 margin_right = 250.0
 margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
 text = "Somethingfinals
 "
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
