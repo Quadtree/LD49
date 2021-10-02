@@ -26,6 +26,13 @@ public class MatchRunner : Spatial
 
     public int MatchNumber = 0;
 
+
+    public int PlayerCombantantType = 0;
+    public int OpponentCombatantType = -1;
+
+    public int OpponentPunchAIType = 0;
+    public int OpponentBalanceAIType = 0;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -35,6 +42,11 @@ public class MatchRunner : Spatial
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        if (OpponentCombatantType == -1)
+        {
+            RestartMatch();
+        }
+
         var combatants = GetTree().CurrentScene.FindChildrenByType<Combatant>(0);
 
         var any = false;
@@ -53,7 +65,7 @@ public class MatchRunner : Spatial
             }
         }
 
-        if (!any) RestartMatch();
+        if (!any) RestartPoint();
     }
 
     public void Loses(Combatant combatant)
@@ -70,14 +82,13 @@ public class MatchRunner : Spatial
 
         if (PlayerScore >= PointsToWinMatch)
         {
-            PlayerScore = 0;
-            OpponentScore = 0;
+            RestartMatch();
         }
 
-        RestartMatch();
+        RestartPoint();
     }
 
-    public void RestartMatch()
+    public void RestartPoint()
     {
         foreach (var c in GetTree().CurrentScene.FindChildrenByType<Combatant>(0))
         {
@@ -91,12 +102,27 @@ public class MatchRunner : Spatial
         player.SetGlobalLocation(new Vector3(4, 2, 0));
 
 
-        var opponent = CombatantTypes[Util.RandInt(0, CombatantTypes.Count)].Instance<Combatant>();
+        var opponent = CombatantTypes[OpponentCombatantType].Instance<Combatant>();
         opponent.Name = "Opponent";
         GetTree().CurrentScene.AddChild(opponent);
         opponent.SetGlobalLocation(new Vector3(-4, 2, 0));
 
-        opponent.AddChild(MovementAIs[Util.RandInt(0, MovementAIs.Count)].Instance<Node>());
-        opponent.AddChild(PunchingAIs[Util.RandInt(0, PunchingAIs.Count)].Instance<Node>());
+        opponent.AddChild(MovementAIs[OpponentBalanceAIType].Instance<Node>());
+        opponent.AddChild(PunchingAIs[OpponentPunchAIType].Instance<Node>());
+    }
+
+    public void RestartMatch()
+    {
+        PlayerScore = 0;
+        OpponentScore = 0;
+
+        foreach (var c in GetTree().CurrentScene.FindChildrenByType<Combatant>(0))
+        {
+            c.QueueFree();
+        }
+
+        OpponentCombatantType = Util.RandInt(0, CombatantTypes.Count);
+        OpponentBalanceAIType = Util.RandInt(0, MovementAIs.Count);
+        OpponentPunchAIType = Util.RandInt(0, PunchingAIs.Count);
     }
 }
