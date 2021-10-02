@@ -94,3 +94,5 @@ nodes/node_a = NodePath("../Body")
 nodes/node_b = NodePath("../Arm")
 linear_spring_y/stiffness = 2.0
 linear_spring_y/equilibrium_point = 0.5
+angular_limit_z/upper_angle = 90.0
+angular_limit_z/lower_angle = 90.0

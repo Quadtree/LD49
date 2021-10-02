@@ -49,11 +49,17 @@ public class Combatant : Spatial
             var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
             var body = this.FindChildByName<RigidBody>("Body");
 
+            var armRootLocation = body.GlobalTransform * armJoint.Transform;
 
+            //Console.WriteLine(angle.origin);
 
-            var angle = body.GlobalTransform * armJoint.Transform;
+            var angle = Mathf.Atan2(pos.y - armRootLocation.origin.y, -pos.x - -armRootLocation.origin.x) * (180 / Mathf.Pi);
+            var dist = new Vector3(pos.x, pos.y, 0).DistanceTo(new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0));
 
-            Console.WriteLine(angle.origin);
+            Console.WriteLine($"angle={angle} dist={dist}");
+
+            armJoint.AngularLimitZ__lowerAngle = angle - 0.05f;
+            armJoint.AngularLimitZ__upperAngle = angle + 0.05f;
         }
         else
         {
