@@ -45,6 +45,8 @@ public class Combatant : Spatial
         {
             pos = (Vector3)curPos["position"];
             Console.WriteLine(pos);
+
+            
         }
         else
         {
