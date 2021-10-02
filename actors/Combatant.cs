@@ -65,9 +65,24 @@ public class Combatant : Spatial
             GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
             GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
 
+            var relPos = new Vector3(pos.x, pos.y, 0) - new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0);
+
+            if (relPos.Length() > 2) relPos = relPos.Normalized() * 2;
+
+            var rotQuat = new Quat(armRootLocation.Inverse().basis);
+
+            var thing = rotQuat.Xform(relPos);
+
+            //Console.WriteLine(thing);
+
+            armJoint.LinearLimitX__lowerDistance = thing.x;
+            armJoint.LinearLimitX__upperDistance = thing.x;
+            armJoint.LinearLimitY__lowerDistance = thing.y;
+            armJoint.LinearLimitY__upperDistance = thing.y;
+
             //Console.WriteLine(angle.origin);
 
-            var zRot = new Quat(body.GlobalTransform.basis).GetEuler().z;
+            /*var zRot = new Quat(body.GlobalTransform.basis).GetEuler().z;
 
             var angle = (-Mathf.Atan2(pos.y - armRootLocation.origin.y, pos.x - armRootLocation.origin.x) + zRot) * (180 / Mathf.Pi) + 90;
 
@@ -83,7 +98,7 @@ public class Combatant : Spatial
             Console.WriteLine($"angle={angle} dist={dist} od={od} zRot={zRot}");
 
             armJoint.AngularLimitZ__lowerAngle = angle - 0.05f;
-            armJoint.AngularLimitZ__upperAngle = angle + 0.05f;
+            armJoint.AngularLimitZ__upperAngle = angle + 0.05f;*/
 
             //armJoint.LinearLimitY__lowerDistance = dist - 0.01f;
             //armJoint.LinearLimitY__upperDistance = dist + 0.01f;

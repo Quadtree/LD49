@@ -62,7 +62,7 @@ material/0 = SubResource( 4 )
 
 [node name="Body" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.695, 0 )
-mass = 6.0
+mass = 5.0
 can_sleep = false
 axis_lock_linear_z = true
 axis_lock_angular_x = true
@@ -85,7 +85,8 @@ angular_limit_z/enabled = false
 
 [node name="Arm" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0273581, 4.20282, 0 )
-mass = 0.5
+mass = 1.5
+gravity_scale = 4.0
 can_sleep = false
 axis_lock_linear_z = true
 axis_lock_angular_x = true
