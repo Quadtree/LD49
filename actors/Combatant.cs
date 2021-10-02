@@ -26,10 +26,10 @@ public class Combatant : Spatial
         if (MoveLeft && !MoveRight) targetSpeed = -1f;
         if (!MoveLeft && MoveRight) targetSpeed = 1f;
 
-        var wheelJoint = this.FindChildByType<HingeJoint>();
-        wheelJoint.Motor__enable = true;
-        wheelJoint.Motor__maxImpulse = 1000f;
-        wheelJoint.Motor__targetVelocity = -targetSpeed * 4;
+        var wheelJoint = this.FindChildByType<Generic6DOFJoint>();
+        wheelJoint.AngularMotorZ__enabled = true;
+        wheelJoint.AngularMotorZ__forceLimit = 1000f;
+        wheelJoint.AngularMotorZ__targetVelocity = -targetSpeed * 4;
 
 
         /*

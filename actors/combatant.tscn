@@ -64,6 +64,7 @@ shape = SubResource( 5 )
 mesh = SubResource( 6 )
 material/0 = null
 
-[node name="HingeJoint" type="HingeJoint" parent="."]
+[node name="Generic6DOFJoint" type="Generic6DOFJoint" parent="."]
 nodes/node_a = NodePath("../Wheels")
 nodes/node_b = NodePath("../Body")
+angular_limit_z/enabled = false
