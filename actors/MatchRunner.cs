@@ -19,6 +19,9 @@ public class MatchRunner : Spatial
     public Array<PackedScene> PunchingAIs;
 
     [Export]
+    public Array<PackedScene> Arenas;
+
+    [Export]
     public int MatchesToWinTournament = 3;
 
     [Export]
@@ -32,6 +35,8 @@ public class MatchRunner : Spatial
 
     public int OpponentPunchAIType = 0;
     public int OpponentBalanceAIType = 0;
+
+    public int ArenaType = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -106,6 +111,17 @@ public class MatchRunner : Spatial
             c.Name += "_X";
         }
 
+        var oldArena = GetTree().CurrentScene.GetNode<Spatial>("Arena");
+        if (oldArena != null)
+        {
+            oldArena.Name = "OldArena";
+            oldArena.QueueFree();
+        }
+
+        var arena = Arenas[ArenaType].Instance<Spatial>();
+        arena.Name = "Arena";
+        GetTree().CurrentScene.AddChild(arena);
+
         var player = CombatantTypes[PlayerCombantantType].Instance<Combatant>();
         player.IsPlayerControlled = true;
         player.Name = "Player";
@@ -137,6 +153,7 @@ public class MatchRunner : Spatial
         OpponentCombatantType = Util.RandInt(0, CombatantTypes.Count);
         OpponentBalanceAIType = Util.RandInt(0, MovementAIs.Count);
         OpponentPunchAIType = Util.RandInt(0, PunchingAIs.Count);
+        ArenaType = Util.RandInt(0, Arenas.Count);
 
         Console.WriteLine($"Restarting Match: OpponentCombatantType={OpponentCombatantType} OpponentBalanceAIType={OpponentBalanceAIType} OpponentPunchAIType={OpponentPunchAIType}");
     }

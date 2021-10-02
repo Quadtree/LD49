@@ -12,79 +12,67 @@
 [ext_resource path="res://actors/cmb_types/mini.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/cmb_types/destructor.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ui/InGameUI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://actors/arenas/icy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://actors/arenas/boring.tscn" type="PackedScene" id=14]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 10, 0.1, 2 )
-
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 20, 0.1, 4 )
-
-[sub_resource type="BoxShape" id=3]
 extents = Vector3( 400, 0.2, 400 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 0.25, 0.25, 0.25 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 1, 0.133333, 1 )
 
 [sub_resource type="CubeMesh" id=5]
 material = SubResource( 4 )
 size = Vector3( 0.25, 0.25, 0.25 )
 
 [sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 0, 1, 0.133333, 1 )
+albedo_color = Color( 0, 0.0862745, 1, 1 )
 
 [sub_resource type="CubeMesh" id=7]
 material = SubResource( 6 )
 size = Vector3( 0.25, 0.25, 0.25 )
 
-[sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 0, 0.0862745, 1, 1 )
-
-[sub_resource type="CubeMesh" id=9]
-material = SubResource( 8 )
-size = Vector3( 0.25, 0.25, 0.25 )
-
 [node name="Spatial" type="Spatial"]
-
-[node name="StaticBody" type="StaticBody" parent="."]
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-mesh = SubResource( 2 )
-material/0 = null
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28077, 9.42764 )
 current = true
 
-[node name="StaticBody2" type="StaticBody" parent="."]
+[node name="PickingPane" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2 )
 collision_layer = 16384
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+[node name="PickingPaneShape" type="CollisionShape" parent="PickingPane"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Debug0" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32.509 )
-mesh = SubResource( 5 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="Debug1" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.453479, 0, 32.509 )
-mesh = SubResource( 7 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Debug2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.912577, 0, 32.509 )
-mesh = SubResource( 9 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="MatchRunner" parent="." instance=ExtResource( 6 )]
 CombatantTypes = [ ExtResource( 2 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
 MovementAIs = [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ) ]
 PunchingAIs = [ ExtResource( 9 ), ExtResource( 3 ) ]
+Arenas = [ ExtResource( 13 ), ExtResource( 14 ) ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

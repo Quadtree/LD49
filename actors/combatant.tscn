@@ -4,7 +4,6 @@
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 20.0
-rough = true
 
 [sub_resource type="CylinderShape" id=2]
 height = 0.35
