@@ -18,6 +18,9 @@ public class Combatant : Spatial
     [Export]
     float MercyStabilityTime = 4f;
 
+    [Export]
+    float PunchRange = 2.5f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -45,8 +48,8 @@ public class Combatant : Spatial
 
         var wheelJoint = this.FindChildByName<Generic6DOFJoint>("Generic6DOFJoint");
         wheelJoint.AngularMotorZ__enabled = true;
-        wheelJoint.AngularMotorZ__forceLimit = 1000f;
-        wheelJoint.AngularMotorZ__targetVelocity = -targetSpeed * 6;
+        wheelJoint.AngularMotorZ__forceLimit = 20;
+        wheelJoint.AngularMotorZ__targetVelocity = -targetSpeed * 3;
 
         var cam = GetViewport().GetCamera();
 
@@ -68,13 +71,13 @@ public class Combatant : Spatial
 
             var armRootLocation = this.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
 
-            GetTree().CurrentScene.FindChildByName<Spatial>("Debug0").SetGlobalLocation(armRootLocation.origin);
-            GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
-            GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
+            //GetTree().CurrentScene.FindChildByName<Spatial>("Debug0").SetGlobalLocation(armRootLocation.origin);
+            //GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
+            //GetTree().CurrentScene.FindChildByName<Spatial>("Debug2").SetGlobalLocation(pos);
 
             var relPos = new Vector3(pos.x, pos.y, 0) - new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0);
 
-            if (relPos.Length() > 2) relPos = relPos.Normalized() * 2;
+            if (relPos.Length() > PunchRange) relPos = relPos.Normalized() * PunchRange;
 
             var rotQuat = new Quat(armRootLocation.Inverse().basis);
 
@@ -113,6 +116,13 @@ public class Combatant : Spatial
         else
         {
             Console.WriteLine("HIT NOTHING");
+        }
+
+        {
+            var body = this.FindChildByName<RigidBody>("Body");
+            var arm = this.FindChildByName<RigidBody>("Arm");
+
+            body.AddForce(new Vector3(0, -8, 0), arm.GetGlobalLocation() - body.GetGlobalLocation());
         }
 
 
