@@ -69,6 +69,7 @@ MercyStabilityTime = 400000.0
 transform = Transform( -0.914056, 0, -0.405588, 0, 1, 0, 0.405588, 0, -0.914056, 11.0226, 1.04011, 0.819874 )
 
 [node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector5" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000430107, 0.0214133, 0.00999641 )
 MercyStabilityTime = 4e+06
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
