@@ -13,6 +13,8 @@ public class Combatant : Spatial
     [Export]
     public bool IsPlayerControlled;
 
+    private Vector3 ArmJointRelative = new Vector3(-1000000, 0, 0);
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -22,6 +24,14 @@ public class Combatant : Spatial
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        if (ArmJointRelative.x < -10000)
+        {
+            var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
+            var body = this.FindChildByName<RigidBody>("Body");
+
+            ArmJointRelative = armJoint.Translation - body.Translation;
+        }
+
         float targetSpeed = 0f;
         if (MoveLeft && !MoveRight) targetSpeed = -1f;
         if (!MoveLeft && MoveRight) targetSpeed = 1f;
@@ -49,7 +59,7 @@ public class Combatant : Spatial
             var armJoint = this.FindChildByName<Generic6DOFJoint>("ArmJoint");
             var body = this.FindChildByName<RigidBody>("Body");
 
-            var armRootLocation = body.GlobalTransform * armJoint.Transform;
+            var armRootLocation = body.Transform * new Transform().Translated(ArmJointRelative);
 
             GetTree().CurrentScene.FindChildByName<Spatial>("Debug0").SetGlobalLocation(armRootLocation.origin);
             GetTree().CurrentScene.FindChildByName<Spatial>("Debug1").SetGlobalLocation(new Vector3(pos.x, pos.y, 0));
