@@ -96,6 +96,6 @@ material/0 = null
 shape = SubResource( 8 )
 
 [node name="ArmJoint" type="Generic6DOFJoint" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350058, 4.11378, -0.00378227 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350058, 3.13678, -0.00378227 )
 nodes/node_a = NodePath("../Body")
 nodes/node_b = NodePath("../Arm")
