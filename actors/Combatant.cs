@@ -39,7 +39,7 @@ public class Combatant : Spatial
 
         var pos = new Vector3();
 
-        var curPos = GetWorld().DirectSpaceState.IntersectRay(raySrc, rayTo);
+        var curPos = GetWorld().DirectSpaceState.IntersectRay(raySrc, rayTo, null, 16384);
 
         if (curPos.Contains("position"))
         {
@@ -57,7 +57,7 @@ public class Combatant : Spatial
 
             //Console.WriteLine(angle.origin);
 
-            var angle = Mathf.Atan2(pos.y - armRootLocation.origin.y, -pos.x - -armRootLocation.origin.x) * (180 / Mathf.Pi);
+            var angle = -Mathf.Atan2(pos.y - armRootLocation.origin.y, pos.x - armRootLocation.origin.x) * (180 / Mathf.Pi) + 90;
             var dist = new Vector3(pos.x, pos.y, 0).DistanceTo(new Vector3(armRootLocation.origin.x, armRootLocation.origin.y, 0));
 
             dist = Mathf.Min(dist, 2);
