@@ -30,7 +30,8 @@ public class MatchRunner : Spatial
     public int MatchNumber = 0;
 
 
-    public int PlayerCombantantType = 0;
+    public static int PlayerCombantantType = 0;
+    public static int Difficulty = 0;
     public int OpponentCombatantType = -1;
 
     public int OpponentPunchAIType = 0;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/CombatantSelector.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/combatant.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://actors/cmb_types/meteor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/cmb_types/destructor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/cmb_types/steamroller.tscn" type="PackedScene" id=6]
+[ext_resource path="res://fonts/audiowide_vbig.tres" type="DynamicFont" id=7]
+[ext_resource path="res://maps/SetupScreen.cs" type="Script" id=8]
 
 [sub_resource type="Environment" id=2]
 background_mode = 1
@@ -17,6 +19,7 @@ size = Vector3( 100, 0.1, 100 )
 extents = Vector3( 50, 0.05, 50 )
 
 [node name="SetupScreenRoot" type="Spatial"]
+script = ExtResource( 8 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -26,6 +29,44 @@ anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DifficultySelection" type="GridContainer" parent="CanvasLayer/SetupScreen"]
+anchor_right = 1.0
+anchor_bottom = 0.36
+margin_left = 600.0
+margin_top = 131.0
+margin_right = -600.0
+margin_bottom = -94.8
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EasyButton" type="Button" parent="CanvasLayer/SetupScreen/DifficultySelection"]
+margin_right = 148.0
+margin_bottom = 71.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 7 )
+toggle_mode = true
+text = "Easy"
+
+[node name="MediumButton" type="Button" parent="CanvasLayer/SetupScreen/DifficultySelection"]
+margin_left = 241.0
+margin_right = 461.0
+margin_bottom = 71.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 7 )
+toggle_mode = true
+text = "Medium"
+
+[node name="HardButton" type="Button" parent="CanvasLayer/SetupScreen/DifficultySelection"]
+margin_left = 570.0
+margin_right = 719.0
+margin_bottom = 71.0
+size_flags_horizontal = 10
+custom_fonts/font = ExtResource( 7 )
+toggle_mode = true
+text = "Hard"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -42,12 +83,14 @@ material/0 = null
 
 [node name="CombatantSelector" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.030399, 0, 0.999538, 0, 1, 0, -0.999538, 0, -0.030399, 0, 1.04011, -4.64954 )
+CmbId = 0
 
 [node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector" instance=ExtResource( 2 )]
 MercyStabilityTime = 10000.0
 
 [node name="CombatantSelector2" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.526585, 0, 0.850123, 0, 1, 0, -0.850123, 0, -0.526585, -6.20479, 1.04011, -3.18089 )
+CmbId = 3
 
 [node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector2" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.331334, 0 )
@@ -55,18 +98,21 @@ MercyStabilityTime = 400000.0
 
 [node name="CombatantSelector4" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.914056, 0, 0.405588, 0, 1, 0, -0.405588, 0, -0.914056, -9.73271, 1.0401, 1.56475 )
+CmbId = 4
 
 [node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector4" instance=ExtResource( 5 )]
 MercyStabilityTime = 400000.0
 
 [node name="CombatantSelector3" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.526585, 0, -0.850123, 0, 1, 0, 0.850123, 0, -0.526585, 6.56709, 1.04011, -3.2417 )
+CmbId = 1
 
 [node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector3" instance=ExtResource( 6 )]
 MercyStabilityTime = 400000.0
 
 [node name="CombatantSelector5" parent="StaticBody/SelectorPad" instance=ExtResource( 1 )]
 transform = Transform( -0.914056, 0, -0.405588, 0, 1, 0, 0.405588, 0, -0.914056, 11.0226, 1.04011, 0.819874 )
+CmbId = 2
 
 [node name="Combatant" parent="StaticBody/SelectorPad/CombatantSelector5" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000430107, 0.0214133, 0.00999641 )
