@@ -7,8 +7,8 @@ public class Combatant : Spatial
     // private int a = 2;
     // private string b = "text";
 
-    bool MoveLeft = false;
-    bool MoveRight = false;
+    public bool MoveLeft = false;
+    public bool MoveRight = false;
 
     [Export]
     public bool IsPlayerControlled;

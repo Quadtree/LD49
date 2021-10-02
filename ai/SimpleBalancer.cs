@@ -25,5 +25,17 @@ public class SimpleBalancer : Spatial
         var bodyRotation = body.Rotation.z;
 
         Console.WriteLine(bodyRotation);
+
+        if (bodyRotation > 0)
+        {
+            cmb.MoveLeft = true;
+            cmb.MoveRight = false;
+        }
+
+        if (bodyRotation < 0)
+        {
+            cmb.MoveLeft = false;
+            cmb.MoveRight = true;
+        }
     }
 }
