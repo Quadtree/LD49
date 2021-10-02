@@ -8,6 +8,12 @@ public class PIDBalancer : Spatial
     [Export]
     public float CenterPoint = 0f;
 
+    [Export]
+    public float TimeI = 0.5f;
+
+    [Export]
+    public float TimeD = 0.5f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -32,8 +38,8 @@ public class PIDBalancer : Spatial
         PastError += (bodyRotation - CenterPoint) * delta;
 
         var GAIN = -1f;
-        var TIME_I = 0.5f;
-        var TIME_D = 0.5f;
+        var TIME_I = TimeI;
+        var TIME_D = TimeD;
 
         var control = GAIN * ((bodyRotation - CenterPoint) + (1 / TIME_I) * PastError + TIME_D * bodyRotationRate);
 

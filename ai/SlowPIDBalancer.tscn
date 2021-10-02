@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ai/PIDBalancer.tscn" type="PackedScene" id=1]
+
+[node name="PIDBalancer" instance=ExtResource( 1 )]
+TimeI = 2.0
+TimeD = 1.0
