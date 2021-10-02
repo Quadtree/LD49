@@ -31,6 +31,26 @@ public class Combatant : Spatial
         wheelJoint.AngularMotorZ__forceLimit = 1000f;
         wheelJoint.AngularMotorZ__targetVelocity = -targetSpeed * 4;
 
+        var cam = GetViewport().GetCamera();
+
+        var raySrc = cam.ProjectRayOrigin(GetViewport().GetMousePosition());
+        var rayNorm = cam.ProjectRayNormal(GetViewport().GetMousePosition());
+        var rayTo = raySrc + rayNorm * 100;
+
+        var pos = new Vector3();
+
+        var curPos = GetWorld().DirectSpaceState.IntersectRay(raySrc, rayTo);
+
+        if (curPos.Contains("position"))
+        {
+            pos = (Vector3)curPos["position"];
+            Console.WriteLine(pos);
+        }
+        else
+        {
+            Console.WriteLine("HIT NOTHING");
+        }
+
 
         /*
         var wheels = this.FindChildByName<RigidBody>("Wheels");
