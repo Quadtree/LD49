@@ -267,8 +267,8 @@ public class Combatant : Spatial
 
             Console.WriteLine($"offset={offset} dist={dist} angle={angle}");
 
-            upperArm.Rotation = new Vector3(0, 0, angle - offset);
-            lowerArm.Rotation = new Vector3(0, 0, angle + offset);
+            upperArm.Rotation = new Vector3(0, 0, angle + offset);
+            lowerArm.Rotation = new Vector3(0, 0, angle - offset);
 
 
         }
