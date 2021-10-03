@@ -47,9 +47,10 @@ __meta__ = {
 }
 
 [node name="EasyButton" type="Button" parent="CanvasLayer/SetupScreen/DifficultySelection"]
-margin_right = 176.0
+margin_left = 269.0
+margin_right = 445.0
 margin_bottom = 105.0
-size_flags_horizontal = 2
+size_flags_horizontal = 10
 custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 10 )
 custom_styles/normal = ExtResource( 9 )
@@ -58,10 +59,10 @@ toggle_mode = true
 text = "Easy"
 
 [node name="MediumButton" type="Button" parent="CanvasLayer/SetupScreen/DifficultySelection"]
-margin_left = 449.0
-margin_right = 697.0
+margin_left = 547.0
+margin_right = 795.0
 margin_bottom = 105.0
-size_flags_horizontal = 2
+size_flags_horizontal = 6
 custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 10 )
 custom_styles/normal = ExtResource( 9 )
@@ -70,10 +71,10 @@ toggle_mode = true
 text = "Medium"
 
 [node name="HardButton" type="Button" parent="CanvasLayer/SetupScreen/DifficultySelection"]
-margin_left = 1166.0
-margin_right = 1343.0
+margin_left = 898.0
+margin_right = 1075.0
 margin_bottom = 105.0
-size_flags_horizontal = 10
+size_flags_horizontal = 2
 custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 10 )
 custom_styles/normal = ExtResource( 9 )
