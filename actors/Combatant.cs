@@ -251,6 +251,25 @@ public class Combatant : Spatial
 
 
         {
+            var upperArm = GetNode<Spatial>("Body/UpperArm");
+            var lowerArm = GetNode<Spatial>("Arm/LowerArm");
+
+            var upperArmPos = upperArm.GetGlobalLocation();
+            var lowerArmPos = lowerArm.GetGlobalLocation() + new Vector3(0, 0.5f, 0);
+
+            var dist = Mathf.Clamp(upperArmPos.DistanceTo(lowerArmPos) / ((PunchRange + BonusPunchRangeDuringPunch) * 1f), 0, 1);
+
+            lowerArmPos = lowerArm.GetGlobalLocation() + new Vector3(0, 0.5f * dist, 0);
+
+            var angle = Mathf.Atan2(lowerArmPos.y - upperArmPos.y, lowerArmPos.x - upperArmPos.x);
+
+            var offset = Mathf.Acos(dist);
+
+            Console.WriteLine($"offset={offset} dist={dist} angle={angle}");
+
+            upperArm.Rotation = new Vector3(0, 0, angle - offset);
+            lowerArm.Rotation = new Vector3(0, 0, angle + offset);
+
 
         }
     }
