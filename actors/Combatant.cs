@@ -52,6 +52,9 @@ public class Combatant : Spatial
     [Export]
     public float ArmWeightModifier = 1f;
 
+    [Export]
+    public bool ArmInverted = false;
+
     public bool HitAtLeastOnce = false;
 
     public float OverTilt = 0;
@@ -250,7 +253,7 @@ public class Combatant : Spatial
 
         if (PunchGoingOut)
         {
-            ExtraPunchRange += delta * 2;
+            ExtraPunchRange += delta * 2 * ArmMoveSpeed / 2;
             if (ExtraPunchRange >= BonusPunchRangeDuringPunch)
             {
                 PunchGoingOut = false;
@@ -298,6 +301,8 @@ public class Combatant : Spatial
             //Console.WriteLine($"offset={offset} dist={dist} angle={angle}");
 
             var sideMod = lowerArmPos.x > upperArmPos.x ? -1 : 1;
+
+            if (ArmInverted) sideMod *= -1;
 
             var upperArmTransform = upperArm.GlobalTransform;
             var upperArmOrigin = upperArmTransform.origin;

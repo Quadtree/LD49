@@ -14,13 +14,16 @@ height = 0.35
 extents = Vector3( 0.2, 1, 0.2 )
 
 [node name="Combatant" instance=ExtResource( 1 )]
-ArmMoveSpeed = 4.0
+BonusPunchRangeDuringPunch = 2.5
+ArmMoveSpeed = 9.0
 WheelMotorPower = 2.0
+WheelMotorSpeed = 1.2
 CmbName = "Mini"
 ArmWeightModifier = 0.15
+ArmInverted = true
 
 [node name="Wheels" parent="." index="0"]
-mass = 7.0
+mass = 15.0
 
 [node name="LeftWheel" parent="Wheels" index="0"]
 shape = SubResource( 1 )
@@ -36,7 +39,7 @@ transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0 )
 
 [node name="Body" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.743389, 0 )
-mass = 25.0
+mass = 20.0
 
 [node name="engine1" parent="Body" index="0"]
 transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, -0.73021, 0 )
