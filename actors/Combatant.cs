@@ -68,6 +68,9 @@ public class Combatant : Spatial
             lb.Scale = new Vector3(lb.Scale.x, lb.Scale.y, lb.Scale.z * maxPunchReach / 2);
             lb.Translation = new Vector3(lb.Translation.x + maxPunchReach / 4 * (lb.Translation.x / Math.Abs(lb.Translation.x)), lb.Translation.y, lb.Translation.z);
         }
+
+        var aj2 = GetNode<Spatial>("UpperArm/arm_joint2");
+        aj2.Translation += new Vector3(maxPunchReach / 4 * (aj2.Translation.x / Math.Abs(aj2.Translation.x)), 0, 0);
     }
 
     private void ArmHitSomething(Node other)
