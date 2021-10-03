@@ -19,7 +19,7 @@ WheelMotorPower = 0.7
 CmbName = "Mini"
 
 [node name="Wheels" parent="." index="0"]
-mass = 1.0
+mass = 4.0
 
 [node name="LeftWheel" parent="Wheels" index="0"]
 shape = SubResource( 1 )

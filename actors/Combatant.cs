@@ -119,7 +119,7 @@ public class Combatant : Spatial
 
         var wheelJoint = this.FindChildByName<Generic6DOFJoint>("Generic6DOFJoint");
         wheelJoint.AngularMotorZ__enabled = true;
-        wheelJoint.AngularMotorZ__forceLimit = 40 * WheelMotorPower;
+        wheelJoint.AngularMotorZ__forceLimit = 40 * WheelMotorPower * 4;
         wheelJoint.AngularMotorZ__targetVelocity = -TargetSpeed * 3 * WheelMotorSpeed;
 
         TargetSpeed = 0;
