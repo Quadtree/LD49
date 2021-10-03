@@ -10,14 +10,16 @@
 * Final robot graphics
   * Engine graphic
   * Body graphic
+* Real arm graphics
 
 # TODO
-* Real arm graphics
 * Final arena graphics
   * Boring arena
   * Ice arena
   * Cage arena
   * Seesaw arena
   * Debris arena
+* Final buttons
+* Final button placements
 * Sound effects
 * Music
