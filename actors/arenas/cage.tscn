@@ -98,3 +98,6 @@ transform = Transform( 0.849331, 0.298482, -0.435368, 0, 0.824778, 0.565457, 0.5
 visible = false
 shadow_enabled = true
 spot_range = 50.0
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+extents = Vector3( 20, 20, 20 )

@@ -11,17 +11,20 @@
   * Engine graphic
   * Body graphic
 * Real arm graphics
+* Final arena graphics
+  * Boring arena
+  * Cage arena
+  * Debris arena
 
 # TODO
 * Final arena graphics
-  * Boring arena
   * Ice arena
-  * Cage arena
   * Seesaw arena
-  * Debris arena
 * Final buttons
 * Final button placements
 
 * Fix cage HTML5 lighting issue
+* Fix town HTML5 lighting issue
+* Fix mini wheels too big issue
 * Sound effects
 * Music
