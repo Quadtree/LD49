@@ -4,11 +4,11 @@
 * Score keeping
 * Win condition
 * Different arenas
-
-# TODO
 * Fighter selection
 * Win screen
 * Lose screen
+
+# TODO
 * Final graphics
 * Real arm graphics
 * Sound effects
