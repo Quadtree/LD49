@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://actors/MatchRunner.cs" type="Script" id=1]
 [ext_resource path="res://actors/cmb_types/steamroller.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/combatant.tscn" type="PackedScene" id=3]
+[ext_resource path="res://components/BalanceAssist.tscn" type="PackedScene" id=4]
 
 [node name="MatchRunner" type="Spatial"]
 script = ExtResource( 1 )
 CombatantTypes = [ ExtResource( 3 ), ExtResource( 2 ) ]
+BalanceAssistType = ExtResource( 4 )
