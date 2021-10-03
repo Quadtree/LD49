@@ -16,14 +16,14 @@
   * Cage arena
   * Debris arena
   * Ice arena
+  * Seesaw arena
 
 # TODO
-* Final arena graphics
-  * Seesaw arena
 * Final buttons
 * Final button placements
-* Fix mini wheels too big issue
 
+* Fix mini wheels too big issue
+* Fix mini arm base in wrong place
 * Sound effects
 * Music
 * Fix cage HTML5 lighting issue
