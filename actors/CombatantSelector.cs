@@ -19,6 +19,10 @@ public class CombatantSelector : Spatial
         var btn = new Button();
         btn.Text = this.FindChildByType<Combatant>(2).CmbName;
 
+        var easyButton = GetTree().CurrentScene.FindChildByName<Button>("EasyButton", 10);
+        btn.AddStyleboxOverride("normal", easyButton.GetStylebox("normal"));
+        btn.AddStyleboxOverride("hover", easyButton.GetStylebox("hover"));
+        btn.AddStyleboxOverride("pressed", easyButton.GetStylebox("pressed"));
 
         //lbl.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(this.GetGlobalLocation());
         btn.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(this.GetGlobalLocation());
