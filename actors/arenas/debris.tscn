@@ -343,12 +343,12 @@ transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.931926, -6.16334e-08, 0.362649, -0.335129, 0.382119, 0.861205, -0.138575, -0.924113, 0.356106, 0, 2.53875, 0 )
-shadow_enabled = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 13 )
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 extents = Vector3( 20, 20, 20 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.85027, 2.15946e-08, 0.526347, -0.473307, 0.437477, 0.764588, -0.230265, -0.89923, 0.371973, 0, 6.14416, 0 )
+shadow_enabled = true

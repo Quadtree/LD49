@@ -94,16 +94,9 @@ material/0 = SubResource( 7 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 8 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.159811, -0.942339, -0.294039, 0.295611, -0.238513, 0.925054, -0.941846, -0.234755, 0.240449, 0, 0, 11.7057 )
-shadow_enabled = true
-directional_shadow_max_distance = 20.0
-
-[node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 0.849331, 0.298482, -0.435368, 0, 0.824778, 0.565457, 0.52786, -0.48026, 0.70051, -13.0006, 11.4615, 11.7057 )
-visible = false
-shadow_enabled = true
-spot_range = 50.0
-
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 extents = Vector3( 20, 20, 20 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.85027, 2.15946e-08, 0.526347, -0.473307, 0.437477, 0.764588, -0.230265, -0.89923, 0.371973, 0, 6.14416, 0 )
+shadow_enabled = true
