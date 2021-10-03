@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://actors/Combatant.cs" type="Script" id=1]
 [ext_resource path="res://meshes/wheel1.glb" type="PackedScene" id=2]
 [ext_resource path="res://meshes/engine1.glb" type="PackedScene" id=3]
 [ext_resource path="res://meshes/body.glb" type="PackedScene" id=4]
 [ext_resource path="res://meshes/beveled_body.glb" type="PackedScene" id=5]
+[ext_resource path="res://meshes/arm_joint.glb" type="PackedScene" id=6]
+[ext_resource path="res://meshes/limb_bar.glb" type="PackedScene" id=7]
+[ext_resource path="res://meshes/fist.glb" type="PackedScene" id=8]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 20.0
@@ -138,3 +141,24 @@ angular_limit_y/enabled = false
 linear_limit_z/enabled = false
 angular_limit_z/upper_angle = 10.0
 angular_limit_z/lower_angle = -10.0
+
+[node name="UpperArm" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53056, 1.86357, 0 )
+
+[node name="limb_bar" parent="UpperArm" instance=ExtResource( 7 )]
+transform = Transform( -1.09278e-08, 0, 0.125, 0, 0.25, 0, -0.25, 0, -5.46392e-09, 0.458903, 0, -2.00593e-08 )
+
+[node name="arm_joint" parent="UpperArm" instance=ExtResource( 6 )]
+transform = Transform( 0.25, 0, 0, 0, 0.00724645, 0.249895, 0, -0.249895, 0.00724645, 0, 0, 0 )
+
+[node name="arm_joint2" parent="UpperArm" instance=ExtResource( 6 )]
+transform = Transform( 0.25, 0, 0, 0, 0.00724645, 0.249895, 0, -0.249895, 0.00724645, 1, 0, 0 )
+
+[node name="LowerArm" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3279, 1.7902, 0 )
+
+[node name="limb_bar" parent="LowerArm" instance=ExtResource( 7 )]
+transform = Transform( -1.09278e-08, 0, 0.125, 0, 0.25, 0, -0.25, 0, -5.46392e-09, -0.833385, 0, 1.50212e-08 )
+
+[node name="fist" parent="LowerArm" instance=ExtResource( 8 )]
+transform = Transform( -1.5299e-08, 0, -0.35, 0, 0.35, 0, 0.35, 0, -1.5299e-08, -0.48974, 0, 0 )
