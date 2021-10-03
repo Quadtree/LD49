@@ -142,7 +142,7 @@ public class MatchRunner : Spatial
         player.IsPlayerControlled = true;
         player.Name = "Player";
         GetTree().CurrentScene.AddChild(player);
-        player.SetGlobalLocation(new Vector3(4, 2, 0));
+        player.SetGlobalLocation(new Vector3(-4, 2, 0));
 
         if (Difficulty != 2)
         {
@@ -158,7 +158,7 @@ public class MatchRunner : Spatial
         var opponent = CombatantTypes[OpponentCombatantType].Instance<Combatant>();
         opponent.Name = "Opponent";
         GetTree().CurrentScene.AddChild(opponent);
-        opponent.SetGlobalLocation(new Vector3(-4, 2, 0));
+        opponent.SetGlobalLocation(new Vector3(4, 2, 0));
 
         opponent.AddChild(MovementAIs[OpponentBalanceAIType].Instance<Node>());
         opponent.AddChild(PunchingAIs[OpponentPunchAIType].Instance<Node>());

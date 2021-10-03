@@ -37,11 +37,11 @@ public class InGameUI : Control
 
         if (mr != null)
         {
-            GetNode<Label>("GridContainer/LeftPoints").Text = mr.OpponentScore.ToString();
-            GetNode<Label>("GridContainer/RightPoints").Text = mr.PlayerScore.ToString();
+            GetNode<Label>("GridContainer/LeftPoints").Text = mr.PlayerScore.ToString();
+            GetNode<Label>("GridContainer/RightPoints").Text = mr.OpponentScore.ToString();
 
-            GetNode<Label>("GridContainer/LeftCombatantName").Text = opponent?.CmbName ?? "???";
-            GetNode<Label>("GridContainer/RightCombatantName").Text = player?.CmbName ?? "???";
+            GetNode<Label>("GridContainer/LeftCombatantName").Text = player?.CmbName ?? "???";
+            GetNode<Label>("GridContainer/RightCombatantName").Text = opponent?.CmbName ?? "???";
 
             GetNode<Label>("MatchName").Text = MATCH_NAMES[mr.MatchNumber];
         }

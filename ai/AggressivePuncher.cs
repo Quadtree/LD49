@@ -25,7 +25,7 @@ public class AggressivePuncher : Spatial
     public override void _Process(float delta)
     {
         var cmb = GetParent<Combatant>();
-        cmb.DesiredArmPos = new Vector3(5, Height, 0);
+        cmb.DesiredArmPos = new Vector3(-5, Height, 0);
 
         if (Util.random() < delta * ChanceOfHeightChange)
         {
