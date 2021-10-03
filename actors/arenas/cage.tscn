@@ -46,6 +46,7 @@ shape = SubResource( 2 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3.49166, 0, 0, 0 )
 cast_shadow = 0
+use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = SubResource( 9 )
 
@@ -59,6 +60,7 @@ shape = SubResource( 2 )
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3.49166, 0, 0, 0 )
 cast_shadow = 0
+use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = SubResource( 9 )
 
@@ -72,12 +74,14 @@ shape = SubResource( 2 )
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3.49166, 0, 0, 0 )
 cast_shadow = 0
+use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = SubResource( 9 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
 transform = Transform( 11.7126, 0, 0, 0, 19.5072, 0, 0, 0, 1, 0, 0, -6.57761 )
 cast_shadow = 0
+use_in_baked_light = true
 mesh = SubResource( 6 )
 material/0 = SubResource( 8 )
 
