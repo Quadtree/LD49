@@ -24,9 +24,9 @@
 * Fix meteor arm base in wrong place
 * Fix destructorizer fist issue
 * Probably increase wheel weight
-
-# TODO
 * Sound effects
 * Music
+
+# TODO
 * Fix cage HTML5 lighting issue
 * Fix town HTML5 lighting issue
