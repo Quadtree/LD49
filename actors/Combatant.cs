@@ -57,11 +57,11 @@ public class Combatant : Spatial
         arm.Connect("body_entered", this, nameof(ArmHitSomething));
 
         Spatial[] limbBars = new Spatial[]{
-            GetNode<Spatial>("UpperArm/limb_bar"),
-            GetNode<Spatial>("LowerArm/limb_bar"),
+            GetNode<Spatial>("Body/UpperArm/limb_bar"),
+            GetNode<Spatial>("Arm/LowerArm/limb_bar"),
         };
 
-        var maxPunchReach = PunchRange + BonusPunchRangeDuringPunch;
+        var maxPunchReach = PunchRange + BonusPunchRangeDuringPunch * 0.75f;
 
         foreach (var lb in limbBars)
         {
@@ -69,7 +69,7 @@ public class Combatant : Spatial
             lb.Translation = new Vector3(lb.Translation.x + maxPunchReach / 8 * (lb.Translation.x / Math.Abs(lb.Translation.x)), lb.Translation.y, lb.Translation.z);
         }
 
-        var aj2 = GetNode<Spatial>("UpperArm/arm_joint2");
+        var aj2 = GetNode<Spatial>("Body/UpperArm/arm_joint2");
         aj2.Translation += new Vector3(maxPunchReach / 4 * (aj2.Translation.x / Math.Abs(aj2.Translation.x)), 0, 0);
     }
 

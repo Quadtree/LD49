@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/Combatant.cs" type="Script" id=1]
 [ext_resource path="res://meshes/wheel1.glb" type="PackedScene" id=2]
@@ -17,10 +17,6 @@ height = 0.35
 
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.2, 2, 0.2 )
-
-[sub_resource type="SphereMesh" id=5]
-radius = 0.3
-height = 0.6
 
 [sub_resource type="SphereShape" id=6]
 radius = 0.3
@@ -104,6 +100,18 @@ transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.437138, 0, 0.893686, 0 )
 [node name="body" parent="Body" instance=ExtResource( 4 )]
 transform = Transform( 0.00514705, 0, -0.160167, 0, 0.25, 0, 0.330954, 0, 0.00249095, -0.118153, -0.14023, -0.000807161 )
 
+[node name="UpperArm" type="Spatial" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0102838, 0.461511, 0 )
+
+[node name="limb_bar" parent="Body/UpperArm" instance=ExtResource( 7 )]
+transform = Transform( -1.09278e-08, 0, 0.125, 0, 0.25, 0, -0.25, 0, -5.46392e-09, 0.458903, 0, -2.00593e-08 )
+
+[node name="arm_joint" parent="Body/UpperArm" instance=ExtResource( 6 )]
+transform = Transform( 0.25, 0, 0, 0, 0.00724645, 0.249895, 0, -0.249895, 0.00724645, 0, 0, 0 )
+
+[node name="arm_joint2" parent="Body/UpperArm" instance=ExtResource( 6 )]
+transform = Transform( 0.25, 0, 0, 0, 0.00724645, 0.249895, 0, -0.249895, 0.00724645, 1, 0, 0 )
+
 [node name="Generic6DOFJoint" type="Generic6DOFJoint" parent="."]
 nodes/node_a = NodePath("../Wheels")
 nodes/node_b = NodePath("../Body")
@@ -121,11 +129,17 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 
 [node name="MeshInstance" type="MeshInstance" parent="Arm"]
-mesh = SubResource( 5 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Arm"]
 shape = SubResource( 6 )
+
+[node name="LowerArm" type="Spatial" parent="Arm"]
+
+[node name="limb_bar" parent="Arm/LowerArm" instance=ExtResource( 7 )]
+transform = Transform( -1.09278e-08, 0, 0.125, 0, 0.25, 0, -0.25, 0, -5.46392e-09, -0.833385, 0, 1.50212e-08 )
+
+[node name="fist" parent="Arm/LowerArm" instance=ExtResource( 8 )]
+transform = Transform( 1.5299e-08, 0, -0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08, -0.48974, 0, 0 )
 
 [node name="ArmJoint" type="Generic6DOFJoint" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350058, 1.95244, -0.00378227 )
@@ -141,24 +155,3 @@ angular_limit_y/enabled = false
 linear_limit_z/enabled = false
 angular_limit_z/upper_angle = 10.0
 angular_limit_z/lower_angle = -10.0
-
-[node name="UpperArm" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0102838, 2.15651, 0 )
-
-[node name="limb_bar" parent="UpperArm" instance=ExtResource( 7 )]
-transform = Transform( -1.09278e-08, 0, 0.125, 0, 0.25, 0, -0.25, 0, -5.46392e-09, 0.458903, 0, -2.00593e-08 )
-
-[node name="arm_joint" parent="UpperArm" instance=ExtResource( 6 )]
-transform = Transform( 0.25, 0, 0, 0, 0.00724645, 0.249895, 0, -0.249895, 0.00724645, 0, 0, 0 )
-
-[node name="arm_joint2" parent="UpperArm" instance=ExtResource( 6 )]
-transform = Transform( 0.25, 0, 0, 0, 0.00724645, 0.249895, 0, -0.249895, 0.00724645, 1, 0, 0 )
-
-[node name="LowerArm" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3279, 1.7902, 0 )
-
-[node name="limb_bar" parent="LowerArm" instance=ExtResource( 7 )]
-transform = Transform( -1.09278e-08, 0, 0.125, 0, 0.25, 0, -0.25, 0, -5.46392e-09, -0.833385, 0, 1.50212e-08 )
-
-[node name="fist" parent="LowerArm" instance=ExtResource( 8 )]
-transform = Transform( 1.5299e-08, 0, -0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08, -0.48974, 0, 0 )
