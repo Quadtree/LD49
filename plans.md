@@ -17,13 +17,15 @@
   * Debris arena
   * Ice arena
   * Seesaw arena
-
-# TODO
 * Final buttons
 * Final button placements
 
+# TODO
 * Fix mini wheels too big issue
 * Fix mini arm base in wrong place
+* Fix meteor arm base in wrong place
+* Fix destructorizer fist issue
+* Probably increase wheel weight
 * Sound effects
 * Music
 * Fix cage HTML5 lighting issue
