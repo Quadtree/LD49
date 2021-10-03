@@ -93,13 +93,21 @@ public class MatchRunner : Spatial
 
         if (OpponentScore >= PointsToWinMatch)
         {
-            // @TODO: Show "you lose the tournament" screen
+            GetTree().ChangeScene("res://maps/LoseScreen.tscn");
+            return;
         }
 
         if (PlayerScore >= PointsToWinMatch)
         {
             Console.WriteLine("Player has won the match");
             MatchNumber++;
+
+            if (MatchNumber >= 3)
+            {
+                GetTree().ChangeScene("res://maps/WinScreen.tscn");
+                return;
+            }
+
             RestartMatch();
         }
 
