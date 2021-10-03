@@ -18,7 +18,7 @@ shape = SubResource( 1 )
 [node name="Combatant" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19076, 0 )
 IsPlayerControlled = true
-MercyStabilityTime = 0.1
+MercyStabilityTime = 1000.0
 
 [node name="PickingPane" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19076, -0.2 )
