@@ -24,11 +24,16 @@ public class CombatantSelector : Spatial
         btn.AddStyleboxOverride("hover", easyButton.GetStylebox("hover"));
         btn.AddStyleboxOverride("pressed", easyButton.GetStylebox("pressed"));
 
+        var con = new CenterContainer();
+        con.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(this.GetGlobalLocation()) - new Vector2(100, 100) + new Vector2(0, -300);
+        con.RectSize = new Vector2(200, 200);
+        con.AddChild(btn);
+
         //lbl.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(this.GetGlobalLocation());
-        btn.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(this.GetGlobalLocation());
+        //btn.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(this.GetGlobalLocation());
 
         //GetTree().CurrentScene.FindChildByType<CanvasLayer>(2).AddChild(lbl);
-        GetTree().CurrentScene.FindChildByType<CanvasLayer>(2).AddChild(btn);
+        GetTree().CurrentScene.FindChildByType<CanvasLayer>(2).AddChild(con);
 
         btn.Connect("pressed", this, nameof(ButtonPressed));
     }
