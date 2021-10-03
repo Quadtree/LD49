@@ -130,6 +130,11 @@ public class MatchRunner : Spatial
         GetTree().CurrentScene.AddChild(player);
         player.SetGlobalLocation(new Vector3(4, 2, 0));
 
+        if (Difficulty != 2)
+        {
+            player.AddChild(MovementAIs[2].Instance<Node>());
+        }
+
 
         var opponent = CombatantTypes[OpponentCombatantType].Instance<Combatant>();
         opponent.Name = "Opponent";
