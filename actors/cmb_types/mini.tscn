@@ -45,22 +45,50 @@ shape = SubResource( 2 )
 
 [node name="MeshInstance" parent="Wheels" index="2"]
 mesh = SubResource( 3 )
+material/0 = null
 
 [node name="MeshInstance2" parent="Wheels" index="3"]
 mesh = SubResource( 4 )
+material/0 = null
 
 [node name="MeshInstance3" parent="Wheels" index="4"]
 mesh = SubResource( 5 )
+material/0 = null
 
 [node name="Body" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.743389, 0 )
 mass = 15.0
 
-[node name="CollisionShape" parent="Body" index="0"]
+[node name="CollisionShape" parent="Body" index="1"]
 shape = SubResource( 6 )
 
-[node name="MeshInstance" parent="Body" index="1"]
+[node name="MeshInstance" parent="Body" index="2"]
 mesh = SubResource( 7 )
+material/0 = null
 
-[node name="ArmJointCenter" parent="Body" index="2"]
+[node name="ArmJointCenter" parent="Body" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0273581, 1.22754, 0 )
+
+[node name="beveled_body" parent="Body" index="4"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.310103, 0 )
+
+[node name="beveled_body2" parent="Body" index="5"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.134867, 0 )
+
+[node name="beveled_body5" parent="Body" index="6"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 2.29696, 0 )
+
+[node name="beveled_body6" parent="Body" index="7"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 2.75836, 0 )
+
+[node name="beveled_body7" parent="Body" index="8"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 2.75836, 0 )
+
+[node name="beveled_body3" parent="Body" index="9"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.437138, 0, 0.573699, 0 )
+
+[node name="beveled_body4" parent="Body" index="10"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.437138, 0, 1.85428, 0 )
+
+[node name="body" parent="Body" index="11"]
+transform = Transform( 0.00514705, 0, -0.160167, 0, 0.25, 0, 0.330954, 0, 0.00249095, -0.118153, 0.820367, -0.000807161 )
