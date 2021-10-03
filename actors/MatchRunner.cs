@@ -129,6 +129,9 @@ public class MatchRunner : Spatial
         {
             oldArena.Name = "OldArena";
             oldArena.QueueFree();
+
+            var env = oldArena.FindChildByType<WorldEnvironment>();
+            if (env != null) env.Environment = null;
         }
 
         var arena = Arenas[ArenaType].Instance<Spatial>();

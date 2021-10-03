@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=2]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 10, 0.1, 2 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=2]
 size = Vector3( 20, 0.1, 4 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.396078, 0.239216, 0, 1 )
 
-[sub_resource type="CylinderMesh" id=5]
+[sub_resource type="CylinderMesh" id=4]
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.396078, 0.239216, 0, 1 )
 
 [node name="SeesawArena" type="Spatial"]
@@ -23,11 +23,11 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
 
 [node name="Generic6DOFJoint" type="Generic6DOFJoint" parent="."]
 nodes/node_a = NodePath("../RigidBody")
@@ -36,5 +36,5 @@ angular_limit_z/lower_angle = -5.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.04357, -4.5616e-08 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 6 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )

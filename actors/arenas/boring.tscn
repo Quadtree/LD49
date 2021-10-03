@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 100.0
@@ -12,6 +12,11 @@ size = Vector3( 20, 0.1, 4 )
 [sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 
+[sub_resource type="CylinderMesh" id=5]
+
+[sub_resource type="Environment" id=6]
+background_mode = 1
+
 [node name="BoringArena" type="StaticBody"]
 physics_material_override = SubResource( 1 )
 
@@ -21,3 +26,26 @@ shape = SubResource( 2 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 14.7907, 0, 0, 0, 1, 5, -14.8485, 0 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 14.7907, 0, 0, 0, 1, -5, -14.849, 0 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 19.3612, -2.38364e-07 )
+shadow_enabled = true
+spot_range = 40.0
+
+[node name="SpotLight2" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.425527, 0.904946, 0, -0.904946, 0.425527, 0, 14.3307, 10.9124 )
+shadow_enabled = true
+spot_range = 40.0
