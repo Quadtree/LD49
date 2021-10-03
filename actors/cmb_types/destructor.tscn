@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://actors/combatant.tscn" type="PackedScene" id=1]
+[ext_resource path="res://meshes/red_wheel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CylinderShape" id=1]
 height = 0.35
@@ -20,6 +21,16 @@ CmbName = "Destructorizer"
 
 [node name="LeftWheel" parent="Wheels" index="0"]
 shape = SubResource( 1 )
+
+[node name="wheel1" parent="Wheels/MeshInstance" index="0"]
+visible = false
+
+[node name="wheel2" parent="Wheels/MeshInstance" index="1" instance=ExtResource( 2 )]
+
+[node name="wheel1" parent="Wheels/MeshInstance2" index="0"]
+visible = false
+
+[node name="wheel2" parent="Wheels/MeshInstance2" index="1" instance=ExtResource( 2 )]
 
 [node name="Arm" parent="." index="3"]
 mass = 2.0
