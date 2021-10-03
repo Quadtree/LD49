@@ -66,7 +66,7 @@ public class Combatant : Spatial
         foreach (var lb in limbBars)
         {
             lb.Scale = new Vector3(lb.Scale.x, lb.Scale.y, lb.Scale.z * maxPunchReach / 2);
-            lb.Translation = new Vector3(lb.Translation.x + maxPunchReach / 4 * (lb.Translation.x / Math.Abs(lb.Translation.x)), lb.Translation.y, lb.Translation.z);
+            lb.Translation = new Vector3(lb.Translation.x + maxPunchReach / 8 * (lb.Translation.x / Math.Abs(lb.Translation.x)), lb.Translation.y, lb.Translation.z);
         }
 
         var aj2 = GetNode<Spatial>("UpperArm/arm_joint2");

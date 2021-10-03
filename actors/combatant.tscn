@@ -143,7 +143,7 @@ angular_limit_z/upper_angle = 10.0
 angular_limit_z/lower_angle = -10.0
 
 [node name="UpperArm" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53056, 1.86357, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0102838, 2.15651, 0 )
 
 [node name="limb_bar" parent="UpperArm" instance=ExtResource( 7 )]
 transform = Transform( -1.09278e-08, 0, 0.125, 0, 0.25, 0, -0.25, 0, -5.46392e-09, 0.458903, 0, -2.00593e-08 )
