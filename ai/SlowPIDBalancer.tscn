@@ -5,4 +5,4 @@
 [node name="PIDBalancer" instance=ExtResource( 1 )]
 TimeI = 2.0
 TimeD = 1.0
-GiveUpTilt = 0.5
+GiveUpTilt = 0.3

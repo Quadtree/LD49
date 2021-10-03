@@ -68,7 +68,7 @@ public class MatchRunner : Spatial
             var armRootLocation = c.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
             var bodyRotation = body.Rotation.z;
 
-            if (armRootLocation.origin.y < 0f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2)
+            if (armRootLocation.origin.y < 0f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2.2f)
             {
                 Loses(c);
                 break;
@@ -189,6 +189,8 @@ public class MatchRunner : Spatial
             if (ArenaType == 0 && Difficulty == 0) continue; // no ice arena on easy
             if (ArenaType == 4 && Difficulty == 0) continue; // no debris arena on easy
             if (ArenaType == 3 && Difficulty != 2) continue; // seesaw only on hard
+
+            if (Difficulty == 0 && OpponentCombatantType == 2) continue; // no meteor on easy
 
             break;
         }

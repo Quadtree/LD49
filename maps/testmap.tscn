@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://actors/combatant.tscn" type="PackedScene" id=1]
+[ext_resource path="res://components/BalanceAssist.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 200, 0.1, 200 )
@@ -18,7 +19,9 @@ shape = SubResource( 1 )
 [node name="Combatant" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19076, 0 )
 IsPlayerControlled = true
-MercyStabilityTime = 1000.0
+MercyStabilityTime = 0.1
+
+[node name="BalanceAssist" parent="Combatant" instance=ExtResource( 2 )]
 
 [node name="PickingPane" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19076, -0.2 )

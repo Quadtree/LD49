@@ -11,8 +11,9 @@ radius = 0.4
 
 [node name="Combatant" instance=ExtResource( 1 )]
 PunchRange = 1.5
-ArmMoveSpeed = 4.0
+ArmMoveSpeed = 8.0
 WheelMotorPower = 2.0
+WheelMotorSpeed = 1.5
 CmbName = "Destructorizer"
 
 [node name="LeftWheel" parent="Wheels" index="0"]

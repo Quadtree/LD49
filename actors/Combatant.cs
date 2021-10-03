@@ -49,6 +49,8 @@ public class Combatant : Spatial
     [Export]
     public string CmbName = "???";
 
+    public bool HitAtLeastOnce = false;
+
     public float OverTilt = 0;
 
     // Called when the node enters the scene tree for the first time.
@@ -80,6 +82,11 @@ public class Combatant : Spatial
     private void BodyHitSomething(Node other)
     {
         Util.SpawnOneShotSound($"res://sounds/thud{Util.RandInt(0, 4)}.ogg", this, this.FindChildByName<RigidBody>("Arm").GetGlobalLocation());
+
+        if (other.Name == "Arm")
+        {
+            HitAtLeastOnce = true;
+        }
     }
 
     private void ArmHitSomething(Node other)

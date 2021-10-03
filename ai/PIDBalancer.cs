@@ -40,7 +40,7 @@ public class PIDBalancer : Spatial
 
         var bodyRotation = body.Rotation.z;
 
-        if (Math.Abs(bodyRotation) > GiveUpTilt)
+        if (Math.Abs(bodyRotation) > GiveUpTilt && cmb.HitAtLeastOnce)
         {
             cmb.TargetSpeed = 0;
             return;
@@ -53,6 +53,12 @@ public class PIDBalancer : Spatial
         var GAIN = Gain;
         var TIME_I = TimeI;
         var TIME_D = TimeD;
+
+        if (!cmb.HitAtLeastOnce)
+        {
+            TIME_I = Math.Min(TIME_I, 0.75f);
+            TIME_D = Math.Min(TIME_D, 0.75f);
+        }
 
         var control = GAIN * ((bodyRotation - CenterPoint) + (1 / TIME_I) * PastError + TIME_D * bodyRotationRate);
 

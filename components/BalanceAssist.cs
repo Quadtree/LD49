@@ -26,11 +26,13 @@ public class BalanceAssist : Spatial
 
         PastError += (bodyRotation - 0) * delta;
 
-        var GAIN = 0.5f;
-        var TIME_I = 0.25f;
-        var TIME_D = 0.25f;
+        var GAIN = -100f;
+        var TIME_I = 0.45f;
+        var TIME_D = 3f;
 
         var control = GAIN * ((bodyRotation - 0) + (1 / TIME_I) * PastError + TIME_D * bodyRotationRate);
+
+        //Console.WriteLine($"{bodyRotation} {bodyRotationRate}");
 
         //Console.WriteLine(body.GetGlobalLocation().y);
 
