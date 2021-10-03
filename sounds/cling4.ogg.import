@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cling4.ogg-506173017f6aebc1b829b695e08e0e0d.oggstr"
+
+[deps]
+
+source_file="res://sounds/cling4.ogg"
+dest_files=[ "res://.import/cling4.ogg-506173017f6aebc1b829b695e08e0e0d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

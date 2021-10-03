@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Godot.Collections;
 
 public class Combatant : Spatial
 {
@@ -56,6 +57,9 @@ public class Combatant : Spatial
         var arm = this.FindChildByName<RigidBody>("Arm");
         arm.Connect("body_entered", this, nameof(ArmHitSomething));
 
+        var body = this.FindChildByName<RigidBody>("Body");
+        body.Connect("body_entered", this, nameof(BodyHitSomething));
+
         Spatial[] limbBars = new Spatial[]{
             GetNode<Spatial>("Body/UpperArm/limb_bar"),
             GetNode<Spatial>("Arm/LowerArm/limb_bar"),
@@ -73,6 +77,11 @@ public class Combatant : Spatial
         aj2.Translation += new Vector3(maxPunchReach / 4 * (aj2.Translation.x / Math.Abs(aj2.Translation.x)), 0, 0);
     }
 
+    private void BodyHitSomething(Node other)
+    {
+        Util.SpawnOneShotSound($"res://sounds/thud{Util.RandInt(0, 4)}.ogg", this, this.FindChildByName<RigidBody>("Arm").GetGlobalLocation());
+    }
+
     private void ArmHitSomething(Node other)
     {
         //Console.WriteLine($"ARM HIT {other}");
@@ -83,6 +92,17 @@ public class Combatant : Spatial
             PunchComingBack = true;
             ExtraPunchRange = -0.5f;
         }
+
+        if (other.Name == "Arm" || other.Name == "Body")
+        {
+            Util.SpawnOneShotSound($"res://sounds/cling{Util.RandInt(0, 6)}.ogg", this, this.FindChildByName<RigidBody>("Arm").GetGlobalLocation());
+        }
+        else
+        {
+            Util.SpawnOneShotSound($"res://sounds/thud{Util.RandInt(0, 4)}.ogg", this, this.FindChildByName<RigidBody>("Arm").GetGlobalLocation());
+        }
+
+        //Console.WriteLine($"Fist hit {other.Name}");
     }
 
     public void SetPunchDestFromGlobal(Vector3 pos)
