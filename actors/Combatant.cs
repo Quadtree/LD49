@@ -49,6 +49,9 @@ public class Combatant : Spatial
     [Export]
     public string CmbName = "???";
 
+    [Export]
+    public float ArmWeightModifier = 1f;
+
     public bool HitAtLeastOnce = false;
 
     public float OverTilt = 0;
@@ -242,7 +245,7 @@ public class Combatant : Spatial
             var body = this.FindChildByName<RigidBody>("Body");
             var arm = this.FindChildByName<RigidBody>("Arm");
 
-            body.AddForce(new Vector3(0, -8, 0), arm.GetGlobalLocation() - body.GetGlobalLocation());
+            body.AddForce(new Vector3(0, -8 * ArmWeightModifier, 0), arm.GetGlobalLocation() - body.GetGlobalLocation());
         }
 
         if (PunchGoingOut)

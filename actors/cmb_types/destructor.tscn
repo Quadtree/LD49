@@ -34,3 +34,6 @@ mass = 2.0
 
 [node name="CollisionShape" parent="Arm" index="1"]
 shape = SubResource( 2 )
+
+[node name="fist" parent="Arm/LowerArm" index="1"]
+transform = Transform( 3.51065e-08, 3.06911e-15, -0.465, -4.06516e-08, 0.465, 0, -0.465, -4.06516e-08, -3.51065e-08, -0.48974, 0, 0 )
