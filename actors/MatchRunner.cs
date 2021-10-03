@@ -27,6 +27,9 @@ public class MatchRunner : Spatial
     [Export]
     public int PointsToWinMatch = 3;
 
+    [Export]
+    public PackedScene BalanceAssistType;
+
     public int MatchNumber = 0;
 
 
@@ -133,6 +136,11 @@ public class MatchRunner : Spatial
         if (Difficulty != 2)
         {
             player.AddChild(MovementAIs[2].Instance<Node>());
+        }
+
+        if (Difficulty == 0)
+        {
+            player.AddChild(BalanceAssistType.Instance());
         }
 
 
