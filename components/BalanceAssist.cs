@@ -24,15 +24,24 @@ public class BalanceAssist : Spatial
         var bodyRotation = body.Rotation.z;
         var bodyRotationRate = body.AngularVelocity.z;
 
+        if (cmb.MoveRight) bodyRotationRate += 0.4f;
+        if (cmb.MoveLeft) bodyRotationRate -= 0.4f;
+
         PastError += (bodyRotation - 0) * delta;
 
         var GAIN = -100f;
-        var TIME_I = 0.45f;
-        var TIME_D = 3f;
+        var TIME_I = 1f;
+        var TIME_D = 5f;
 
         var control = GAIN * ((bodyRotation - 0) + (1 / TIME_I) * PastError + TIME_D * bodyRotationRate);
 
-        //Console.WriteLine($"{bodyRotation} {bodyRotationRate}");
+        Console.WriteLine($"{bodyRotation} {bodyRotationRate} {control}");
+
+        if ((control > 0 && bodyRotationRate <= 0) || (control <= 0 && bodyRotationRate > 0))
+        {
+            control *= 5;
+            Console.WriteLine("BRAKING");
+        }
 
         //Console.WriteLine(body.GetGlobalLocation().y);
 
