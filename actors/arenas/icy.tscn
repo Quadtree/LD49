@@ -41,6 +41,8 @@ background_mode = 1
 background_color = Color( 0.752941, 0.752941, 0.752941, 1 )
 
 [node name="BoringArena" type="StaticBody"]
+collision_layer = 4
+collision_mask = 4
 physics_material_override = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

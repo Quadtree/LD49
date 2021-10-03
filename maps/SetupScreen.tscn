@@ -126,6 +126,8 @@ keep_aspect = 0
 fov = 105.0
 
 [node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="SelectorPad" type="MeshInstance" parent="StaticBody"]
 layers = 2
