@@ -259,7 +259,7 @@ public class Combatant : Spatial
 
             var dist = Mathf.Clamp(upperArmPos.DistanceTo(lowerArmPos) / ((PunchRange + BonusPunchRangeDuringPunch) * 1f), 0, 1);
 
-            lowerArmPos = lowerArm.GetGlobalLocation() + new Vector3(0, 0.5f * dist, 0);
+            lowerArmPos = lowerArm.GetGlobalLocation() + new Vector3(0, dist, 0);
 
             var angle = Mathf.Atan2(lowerArmPos.y - upperArmPos.y, lowerArmPos.x - upperArmPos.x);
 
@@ -269,7 +269,11 @@ public class Combatant : Spatial
 
             var sideMod = lowerArmPos.x > upperArmPos.x ? -1 : 1;
 
-            upperArm.Rotation = new Vector3(0, 0, angle + offset * sideMod);
+            var upperArmTransform = upperArm.GlobalTransform;
+            var upperArmOrigin = upperArmTransform.origin;
+            upperArm.GlobalTransform = new Transform(new Quat(new Vector3(0, 0, angle + offset * sideMod)), upperArmOrigin);
+
+            //upperArm.Rotation = new Vector3(0, 0, angle + offset * sideMod);
             lowerArm.Rotation = new Vector3(0, 0, angle - offset * sideMod);
 
 
