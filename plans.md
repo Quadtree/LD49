@@ -21,5 +21,7 @@
   * Debris arena
 * Final buttons
 * Final button placements
+
+* Fix cage HTML5 lighting issue
 * Sound effects
 * Music
