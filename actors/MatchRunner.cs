@@ -76,6 +76,8 @@ public class MatchRunner : Spatial
         }
 
         if (!any) RestartPoint();
+
+        Util.SpeedUpPhysicsIfNeeded();
     }
 
     public void Loses(Combatant combatant)
