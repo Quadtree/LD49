@@ -13,16 +13,6 @@ public class ExitGame : Spatial
         Console.WriteLine("Exit game _Ready");
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
-    {
-        if (Input.IsActionPressed("exit_game"))
-        {
-            Console.WriteLine("Exiting via _Process");
-            GetTree().Quit();
-        }
-    }
-
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
@@ -31,6 +21,12 @@ public class ExitGame : Spatial
         {
             Console.WriteLine("Exiting via _Input");
             GetTree().Quit();
+        }
+
+        if (@event.IsActionPressed("restart"))
+        {
+            Console.WriteLine("Restarting via _Input");
+            GetTree().ChangeScene("res://maps/SetupScreen.tscn");
         }
     }
 }
