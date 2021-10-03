@@ -55,6 +55,19 @@ public class Combatant : Spatial
     {
         var arm = this.FindChildByName<RigidBody>("Arm");
         arm.Connect("body_entered", this, nameof(ArmHitSomething));
+
+        Spatial[] limbBars = new Spatial[]{
+            GetNode<Spatial>("UpperArm/limb_bar"),
+            GetNode<Spatial>("LowerArm/limb_bar"),
+        };
+
+        var maxPunchReach = PunchRange + BonusPunchRangeDuringPunch;
+
+        foreach (var lb in limbBars)
+        {
+            lb.Scale = new Vector3(lb.Scale.x, lb.Scale.y, lb.Scale.z * maxPunchReach / 2);
+            lb.Translation = new Vector3(lb.Translation.x + maxPunchReach / 4 * (lb.Translation.x / Math.Abs(lb.Translation.x)), lb.Translation.y, lb.Translation.z);
+        }
     }
 
     private void ArmHitSomething(Node other)
@@ -234,7 +247,9 @@ public class Combatant : Spatial
         */
 
 
+        {
 
+        }
     }
 
     public override void _Input(InputEvent @event)
