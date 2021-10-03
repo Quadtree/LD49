@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public class CombatantSelector : Spatial
 {
@@ -24,8 +25,20 @@ public class CombatantSelector : Spatial
         btn.AddStyleboxOverride("hover", easyButton.GetStylebox("hover"));
         btn.AddStyleboxOverride("pressed", easyButton.GetStylebox("pressed"));
 
+        var v3 = new Vector3();
+
+        foreach (var s in this.FindChildrenByType<Spatial>(10))
+        {
+            if (s.GetGlobalLocation().y > v3.y && s.GetGlobalLocation().y < 10)
+            {
+                v3 = s.GetGlobalLocation();
+            }
+        }
+
+        Console.WriteLine(v3);
+
         var con = new CenterContainer();
-        con.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(this.GetGlobalLocation()) - new Vector2(100, 100) + new Vector2(0, -300);
+        con.RectPosition = GetTree().CurrentScene.FindChildByType<Camera>(2).UnprojectPosition(v3 + new Vector3(0, 1, 0)) - new Vector2(100, 100);
         con.RectSize = new Vector2(200, 200);
         con.AddChild(btn);
 
