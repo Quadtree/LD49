@@ -9,7 +9,15 @@
 * Lose screen
 
 # TODO
-* Final graphics
+* Final robot graphics
+  * Engine graphic
+  * Body graphic
 * Real arm graphics
+* Final arena graphics
+  * Boring arena
+  * Ice arena
+  * Cage arena
+  * Seesaw arena
+  * Debris arena
 * Sound effects
 * Music
