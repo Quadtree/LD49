@@ -10,7 +10,13 @@ public class TitleScreen : Control
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        CallDeferred(nameof(CreateExitGame));
+    }
 
+    private void CreateExitGame()
+    {
+        GetTree().Root.AddChild(GD.Load<PackedScene>("res://actors/ExitGame.tscn").Instance());
+        Console.WriteLine("Exit game created");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
