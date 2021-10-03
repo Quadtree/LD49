@@ -24,6 +24,7 @@ public class InGameUI : Control
         "YouWinMessage",
         "YouLoseMessage",
         "MatchStartMessage",
+        "MatchStartMessage2",
     };
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,7 +48,11 @@ public class InGameUI : Control
 
         foreach (var v in MESSAGES)
         {
-            GetNode<Label>(v).Modulate = new Color(1, 1, 1, Mathf.Max(0, GetNode<Label>(v).Modulate.a - delta));
+            var decayRate = 0.65f;
+
+            if (v == "MatchStartMessage2") decayRate = 0.35f;
+
+            GetNode<Label>(v).Modulate = new Color(1, 1, 1, Mathf.Max(0, GetNode<Label>(v).Modulate.a - delta * decayRate));
         }
     }
 
@@ -65,5 +70,11 @@ public class InGameUI : Control
     {
         GetNode<Label>("MatchStartMessage").Modulate = new Color(1, 1, 1, 1);
         GetNode<Label>("MatchStartMessage").Text = $"Round {round + 1}. Fight!";
+    }
+
+    public void OverallMatchStart(int id)
+    {
+        GetNode<Label>("MatchStartMessage2").Modulate = new Color(1, 1, 1, 1);
+        GetNode<Label>("MatchStartMessage2").Text = $"{MATCH_NAMES[id]} starting!";
     }
 }

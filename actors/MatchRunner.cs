@@ -183,6 +183,9 @@ public class MatchRunner : Spatial
             OpponentPunchAIType = Util.RandInt(0, PunchingAIs.Count - (Difficulty == 0 ? 1 : 0));
             ArenaType = Util.RandInt(0, Arenas.Count);
 
+            OpponentBalanceAIType = Math.Min(MatchNumber, OpponentBalanceAIType);
+            OpponentPunchAIType = Math.Min(MatchNumber, OpponentPunchAIType);
+
             if (ArenaType == 0 && Difficulty == 0) continue; // no ice arena on easy
             if (ArenaType == 4 && Difficulty == 0) continue; // no debris arena on easy
             if (ArenaType == 3 && Difficulty != 2) continue; // seesaw only on hard
@@ -191,6 +194,8 @@ public class MatchRunner : Spatial
         }
 
         Console.WriteLine($"Restarting Match: OpponentCombatantType={OpponentCombatantType} OpponentBalanceAIType={OpponentBalanceAIType} OpponentPunchAIType={OpponentPunchAIType}");
+
+        GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.OverallMatchStart(MatchNumber);
     }
 
     public override void _Input(InputEvent @event)
