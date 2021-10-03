@@ -265,10 +265,12 @@ public class Combatant : Spatial
 
             var offset = Mathf.Acos(dist);
 
-            Console.WriteLine($"offset={offset} dist={dist} angle={angle}");
+            //Console.WriteLine($"offset={offset} dist={dist} angle={angle}");
 
-            upperArm.Rotation = new Vector3(0, 0, angle + offset);
-            lowerArm.Rotation = new Vector3(0, 0, angle - offset);
+            var sideMod = lowerArmPos.x > upperArmPos.x ? -1 : 1;
+
+            upperArm.Rotation = new Vector3(0, 0, angle + offset * sideMod);
+            lowerArm.Rotation = new Vector3(0, 0, angle - offset * sideMod);
 
 
         }
