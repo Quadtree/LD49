@@ -15,16 +15,16 @@
   * Boring arena
   * Cage arena
   * Debris arena
+  * Ice arena
 
 # TODO
 * Final arena graphics
-  * Ice arena
   * Seesaw arena
 * Final buttons
 * Final button placements
-
-* Fix cage HTML5 lighting issue
-* Fix town HTML5 lighting issue
 * Fix mini wheels too big issue
+
 * Sound effects
 * Music
+* Fix cage HTML5 lighting issue
+* Fix town HTML5 lighting issue

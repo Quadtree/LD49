@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/concrete.png-cd92160bfd7e59c5c944c50aff53b041.s3tc.stex"
-path.etc2="res://.import/concrete.png-cd92160bfd7e59c5c944c50aff53b041.etc2.stex"
+path.s3tc="res://.import/snow.png-8b1293a4330f1ab8702441b4f7c0f1e1.s3tc.stex"
+path.etc2="res://.import/snow.png-8b1293a4330f1ab8702441b4f7c0f1e1.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://meshes/concrete.png"
-dest_files=[ "res://.import/concrete.png-cd92160bfd7e59c5c944c50aff53b041.s3tc.stex", "res://.import/concrete.png-cd92160bfd7e59c5c944c50aff53b041.etc2.stex" ]
+source_file="res://meshes/snow.png"
+dest_files=[ "res://.import/snow.png-8b1293a4330f1ab8702441b4f7c0f1e1.s3tc.stex", "res://.import/snow.png-8b1293a4330f1ab8702441b4f7c0f1e1.etc2.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=2
+compress/normal_map=0
 flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
