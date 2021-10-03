@@ -155,13 +155,15 @@ public class MatchRunner : Spatial
         for (int i = 0; i < 1000; ++i)
         {
             OpponentCombatantType = Util.RandInt(0, CombatantTypes.Count);
-            OpponentBalanceAIType = Util.RandInt(0, MovementAIs.Count);
-            OpponentPunchAIType = Util.RandInt(0, PunchingAIs.Count);
+            OpponentBalanceAIType = Util.RandInt(0, Math.Max(MovementAIs.Count - 2 + Difficulty, 1));
+            OpponentPunchAIType = Util.RandInt(0, PunchingAIs.Count - (Difficulty == 0 ? 1 : 0));
             ArenaType = Util.RandInt(0, Arenas.Count);
 
             if (ArenaType == 0 && Difficulty == 0) continue; // no ice arena on easy
             if (ArenaType == 4 && Difficulty == 0) continue; // no debris arena on easy
             if (ArenaType == 3 && Difficulty != 2) continue; // seesaw only on hard
+
+            break;
         }
 
         Console.WriteLine($"Restarting Match: OpponentCombatantType={OpponentCombatantType} OpponentBalanceAIType={OpponentBalanceAIType} OpponentPunchAIType={OpponentPunchAIType}");
