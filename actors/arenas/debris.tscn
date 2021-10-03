@@ -13,14 +13,14 @@ extents = Vector3( 10, 0.1, 2 )
 [sub_resource type="CubeMesh" id=3]
 size = Vector3( 20, 0.1, 4 )
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 2 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 1 )
 uv1_scale = Vector3( 50, 5, 5 )
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0, 1, 0.203922, 1 )
 albedo_texture = ExtResource( 2 )
 normal_enabled = true
@@ -28,10 +28,10 @@ normal_scale = 1.0
 normal_texture = ExtResource( 1 )
 uv1_scale = Vector3( 140, 70, 5 )
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=6]
 size = Vector3( 0.4, 0.25, 4 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 0.952941, 1, 0.403922, 1 )
 albedo_texture = ExtResource( 2 )
 normal_enabled = true
@@ -39,24 +39,24 @@ normal_scale = 1.0
 normal_texture = ExtResource( 1 )
 uv1_scale = Vector3( 3, 20, 1 )
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=8]
 extents = Vector3( 0.2, 0.125, 2 )
 
-[sub_resource type="CubeMesh" id=10]
+[sub_resource type="CubeMesh" id=9]
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.815686, 0.439216, 0, 1 )
 albedo_texture = ExtResource( 2 )
 
-[sub_resource type="PrismMesh" id=12]
+[sub_resource type="PrismMesh" id=11]
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="SpatialMaterial" id=12]
 metallic = 1.0
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 3 )
 
-[sub_resource type="Environment" id=14]
+[sub_resource type="Environment" id=13]
 background_mode = 1
 background_color = Color( 0, 0.764706, 1, 1 )
 ambient_light_color = Color( 0.145098, 0.145098, 0.145098, 1 )
@@ -69,294 +69,274 @@ shape = SubResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 3 )
-material/0 = SubResource( 7 )
+material/0 = SubResource( 4 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
 transform = Transform( 4.22151, 0, 0, 0, 1, 0, 0, 0, 5.88167, 0, -0.0909666, 0 )
 mesh = SubResource( 3 )
-material/0 = SubResource( 9 )
+material/0 = SubResource( 5 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="."]
 transform = Transform( 4.22151, 0, 0, 0, 0.839032, -3.20012, 0, 0.544083, 4.93491, 0, -0.0909666, -8.24208 )
 mesh = SubResource( 3 )
-material/0 = SubResource( 9 )
+material/0 = SubResource( 5 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.161762, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-mesh = SubResource( 5 )
-material/0 = SubResource( 8 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 6 )
-
-[node name="StaticBody5" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.162, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody5"]
-mesh = SubResource( 5 )
-material/0 = SubResource( 8 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody5"]
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="StaticBody6" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.162, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.162, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody6"]
-mesh = SubResource( 5 )
-material/0 = SubResource( 8 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody6"]
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="StaticBody7" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.162, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody7"]
-mesh = SubResource( 5 )
-material/0 = SubResource( 8 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody7"]
-shape = SubResource( 6 )
-
-[node name="StaticBody2" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.162, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
-mesh = SubResource( 5 )
-material/0 = SubResource( 8 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="StaticBody3" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.162, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.162, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody3"]
-mesh = SubResource( 5 )
-material/0 = SubResource( 8 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="StaticBody4" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.162, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody4"]
-mesh = SubResource( 5 )
-material/0 = SubResource( 8 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody4"]
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="House1" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House1"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House2" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, -1.16593, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House2"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House3" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 1.29458, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House3"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House4" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 2.63907, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House4"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House5" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 3.89847, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House5"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House6" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, -6.324, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House6"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House7" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, -7.48993, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House7"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House8" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, -5.02942, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House8"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House9" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, -3.68493, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House9"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House10" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, -2.42553, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House10"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House11" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 6.10051, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House11"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House12" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 4.93458, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House12"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House13" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 7.39509, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House13"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House14" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 8.73958, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House14"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House15" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 9.99898, 0.23389, -3.88652 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House15"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House16" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 3.85956, 0.23389, -2.65312 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House16"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House17" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 2.69363, 0.23389, -2.65312 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House17"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House18" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 5.15414, 0.23389, -2.65312 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House18"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House19" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 6.49863, 0.23389, -2.65312 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House19"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="House20" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 7.75803, 0.23389, -2.65312 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="House20"]
 transform = Transform( 1.72649, 0, 0, 0, 1, 0, 0, 0, 1.13169, 0, 1.91254, 0 )
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.931926, -6.16334e-08, 0.362649, -0.335129, 0.382119, 0.861205, -0.138575, -0.924113, 0.356106, 0, 2.53875, 0 )
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 14 )
+environment = SubResource( 13 )
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 extents = Vector3( 20, 20, 20 )
