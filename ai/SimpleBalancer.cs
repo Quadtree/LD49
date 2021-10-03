@@ -7,6 +7,9 @@ public class SimpleBalancer : Spatial
     // private int a = 2;
     // private string b = "text";
 
+    [Export]
+    public float GiveUpTilt = 2.0f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -21,6 +24,13 @@ public class SimpleBalancer : Spatial
         var body = cmb.FindChildByName<RigidBody>("Body");
 
         var bodyRotation = body.Rotation.z;
+
+        if (Math.Abs(bodyRotation) > GiveUpTilt)
+        {
+            cmb.MoveLeft = false;
+            cmb.MoveRight = false;
+            return;
+        }
 
         //Console.WriteLine(bodyRotation);
 

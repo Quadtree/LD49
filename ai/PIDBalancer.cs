@@ -17,6 +17,9 @@ public class PIDBalancer : Spatial
     [Export]
     public float Gain = -1f;
 
+    [Export]
+    public float GiveUpTilt = 2.0f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -36,6 +39,13 @@ public class PIDBalancer : Spatial
         }
 
         var bodyRotation = body.Rotation.z;
+
+        if (Math.Abs(bodyRotation) > GiveUpTilt)
+        {
+            cmb.TargetSpeed = 0;
+            return;
+        }
+
         var bodyRotationRate = body.AngularVelocity.z;
 
         PastError += (bodyRotation - CenterPoint) * delta;

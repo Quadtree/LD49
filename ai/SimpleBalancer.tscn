@@ -4,3 +4,4 @@
 
 [node name="SimpleBalancer" type="Spatial"]
 script = ExtResource( 1 )
+GiveUpTilt = 1.0
