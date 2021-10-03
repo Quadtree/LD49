@@ -36,7 +36,7 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
-text = "You unbalanced your unstable opponents in the Unbalanced Clash! 
+text = "You unbalanced your unstable opponents in the Rolling Tower Clash! 
 
 Click anywhere to play again."
 align = 1
