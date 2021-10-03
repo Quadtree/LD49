@@ -47,7 +47,9 @@ size = Vector3( 0.25, 0.25, 0.25 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28077, 9.42764 )
+keep_aspect = 0
 current = true
+fov = 105.0
 far = 200.0
 
 [node name="PickingPane" type="StaticBody" parent="."]

@@ -36,11 +36,10 @@ __meta__ = {
 }
 
 [node name="DifficultySelection" type="GridContainer" parent="CanvasLayer/SetupScreen"]
-anchor_right = 1.0
+anchor_left = 0.15
+anchor_right = 0.85
 anchor_bottom = 0.36
-margin_left = 600.0
 margin_top = 131.0
-margin_right = -600.0
 margin_bottom = -94.8
 columns = 3
 __meta__ = {
@@ -59,8 +58,8 @@ toggle_mode = true
 text = "Easy"
 
 [node name="MediumButton" type="Button" parent="CanvasLayer/SetupScreen/DifficultySelection"]
-margin_left = 236.0
-margin_right = 484.0
+margin_left = 449.0
+margin_right = 697.0
 margin_bottom = 105.0
 size_flags_horizontal = 2
 custom_styles/hover = ExtResource( 11 )
@@ -71,8 +70,8 @@ toggle_mode = true
 text = "Medium"
 
 [node name="HardButton" type="Button" parent="CanvasLayer/SetupScreen/DifficultySelection"]
-margin_left = 543.0
-margin_right = 720.0
+margin_left = 1166.0
+margin_right = 1343.0
 margin_bottom = 105.0
 size_flags_horizontal = 10
 custom_styles/hover = ExtResource( 11 )
@@ -121,7 +120,9 @@ __meta__ = {
 environment = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.64834, 11.3093 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.648, 11.309 )
+keep_aspect = 0
+fov = 105.0
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
