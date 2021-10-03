@@ -21,7 +21,7 @@ IsPlayerControlled = true
 MercyStabilityTime = 1e+06
 
 [node name="Camera" type="Camera" parent="Combatant"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.799 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.20406 )
 
 [node name="PickingPane" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19076, -0.2 )

@@ -161,4 +161,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3279, 1.7902, 0 )
 transform = Transform( -1.09278e-08, 0, 0.125, 0, 0.25, 0, -0.25, 0, -5.46392e-09, -0.833385, 0, 1.50212e-08 )
 
 [node name="fist" parent="LowerArm" instance=ExtResource( 8 )]
-transform = Transform( -1.5299e-08, 0, -0.35, 0, 0.35, 0, 0.35, 0, -1.5299e-08, -0.48974, 0, 0 )
+transform = Transform( 1.5299e-08, 0, -0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08, -0.48974, 0, 0 )
