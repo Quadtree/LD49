@@ -7,11 +7,11 @@
 * Fighter selection
 * Win screen
 * Lose screen
-
-# TODO
 * Final robot graphics
   * Engine graphic
   * Body graphic
+
+# TODO
 * Real arm graphics
 * Final arena graphics
   * Boring arena
