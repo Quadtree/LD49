@@ -99,10 +99,12 @@ public class MatchRunner : Spatial
             var cam = GetTree().CurrentScene.FindChildByType<Camera>(10);
             if (cam != null)
             {
-                var midpoint = (combatants.First().FindChildByName<Spatial>("Body").GetGlobalLocation() + combatants.Last().FindChildByName<Spatial>("Body").GetGlobalLocation()) / 2;
-                Console.WriteLine($"CP={midpoint}");
+                var pos1 = combatants.First().FindChildByName<Spatial>("Body").GetGlobalLocation();
+                var pos2 = combatants.Last().FindChildByName<Spatial>("Body").GetGlobalLocation();
+                var midpoint = (pos1 + pos2) / 2;
+                //Console.WriteLine($"CP={midpoint}");
 
-                cam.SetGlobalLocation(new Vector3(midpoint.x, 2.281f, 9.428f));
+                cam.SetGlobalLocation(new Vector3(midpoint.x, 2.281f, Mathf.Max(Mathf.Abs(pos1.x - pos2.x) / 2, 7f)));
             }
             else
             {
