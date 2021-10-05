@@ -94,6 +94,22 @@ public class MatchRunner : Spatial
 
         if (!any) RestartPoint();
 
+        if (any)
+        {
+            var cam = GetTree().CurrentScene.FindChildByType<Camera>(10);
+            if (cam != null)
+            {
+                var midpoint = (combatants.First().FindChildByName<Spatial>("Body").GetGlobalLocation() + combatants.Last().FindChildByName<Spatial>("Body").GetGlobalLocation()) / 2;
+                Console.WriteLine($"CP={midpoint}");
+
+                cam.SetGlobalLocation(new Vector3(midpoint.x, 2.281f, 9.428f));
+            }
+            else
+            {
+                Console.WriteLine("No camera?");
+            }
+        }
+
         Util.SpeedUpPhysicsIfNeeded();
     }
 
