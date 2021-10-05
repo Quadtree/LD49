@@ -42,6 +42,9 @@ public class MatchRunner : Spatial
 
     public int ArenaType = 0;
 
+    public Combatant Loser = null;
+    public float MatchEndTime = 0f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -56,13 +59,27 @@ public class MatchRunner : Spatial
             RestartMatch();
         }
 
+        if (Loser != null)
+        {
+            MatchEndTime += delta;
+            if (MatchEndTime >= 1f)
+            {
+                Loses(Loser);
+            }
+        }
+
         var combatants = GetTree().CurrentScene.FindChildrenByType<Combatant>(0);
 
         var any = false;
 
         foreach (var c in combatants)
         {
+            if (c.IsQueuedForDeletion()) continue;
+
             any = true;
+
+            if (Loser != null) break;
+
             var body = c.FindChildByName<RigidBody>("Body");
 
             var armRootLocation = c.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
@@ -70,7 +87,7 @@ public class MatchRunner : Spatial
 
             if (armRootLocation.origin.y < 0.4f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2.2f)
             {
-                Loses(c);
+                StartLosing(c);
                 break;
             }
         }
@@ -80,17 +97,33 @@ public class MatchRunner : Spatial
         Util.SpeedUpPhysicsIfNeeded();
     }
 
-    public void Loses(Combatant combatant)
+    public void StartLosing(Combatant combatant)
     {
+        Loser = combatant;
+        MatchEndTime = 0f;
+
         if (combatant.IsPlayerControlled)
         {
-            OpponentScore++;
             GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.PlayerLoses();
         }
         else
         {
-            PlayerScore++;
             GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.PlayerWins();
+        }
+    }
+
+    public void Loses(Combatant combatant)
+    {
+        Loser = null;
+        MatchEndTime = 0f;
+
+        if (combatant.IsPlayerControlled)
+        {
+            OpponentScore++;
+        }
+        else
+        {
+            PlayerScore++;
         }
 
         if (OpponentScore >= PointsToWinMatch)
