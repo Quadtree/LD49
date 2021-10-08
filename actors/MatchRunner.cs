@@ -30,6 +30,9 @@ public class MatchRunner : Spatial
     [Export]
     public PackedScene BalanceAssistType;
 
+    [Export]
+    public bool DynamicCamera = false;
+
     public int MatchNumber = 0;
 
 
@@ -94,7 +97,7 @@ public class MatchRunner : Spatial
 
         if (!any) RestartPoint();
 
-        if (any)
+        if (any && DynamicCamera)
         {
             var cam = GetTree().CurrentScene.FindChildByType<Camera>(10);
             if (cam != null)
