@@ -69,7 +69,7 @@ shadow_enabled = true
 [node name="KinematicBody" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, -9.53674e-07, 0 )
 script = ExtResource( 3 )
-TimeToMove = 10.0
+TimeToMove = 30.0
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
 transform = Transform( -0.493228, -0.8699, 0, 0.8699, -0.493228, 0, 0, 0, 1, 5, 8.787, 0 )
@@ -84,7 +84,7 @@ material/0 = SubResource( 4 )
 
 [node name="KinematicBody2" type="KinematicBody" parent="."]
 script = ExtResource( 3 )
-TimeToMove = 10.0
+TimeToMove = 30.0
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody2"]
 transform = Transform( 0.493228, -0.8699, 0, 0.8699, 0.493228, 0, 0, 0, 1, -5, 8.787, 0 )
