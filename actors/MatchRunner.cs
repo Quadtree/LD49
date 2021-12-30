@@ -1,7 +1,7 @@
-using Godot;
-using Godot.Collections;
 using System;
 using System.Linq;
+using Godot;
+using Godot.Collections;
 
 public class MatchRunner : Spatial
 {
@@ -30,6 +30,12 @@ public class MatchRunner : Spatial
     [Export]
     public PackedScene BalanceAssistType;
 
+    [Export]
+    public bool DynamicCamera = false;
+
+    [Export]
+    public bool InLocalMultiplayerMode = false;
+
     public int MatchNumber = 0;
 
 
@@ -41,6 +47,9 @@ public class MatchRunner : Spatial
     public int OpponentBalanceAIType = 0;
 
     public int ArenaType = 0;
+
+    public Combatant Loser = null;
+    public float MatchEndTime = 0f;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -56,13 +65,27 @@ public class MatchRunner : Spatial
             RestartMatch();
         }
 
+        if (Loser != null)
+        {
+            MatchEndTime += delta;
+            if (MatchEndTime >= 1f)
+            {
+                Loses(Loser);
+            }
+        }
+
         var combatants = GetTree().CurrentScene.FindChildrenByType<Combatant>(0);
 
         var any = false;
 
         foreach (var c in combatants)
         {
+            if (c.IsQueuedForDeletion()) continue;
+
             any = true;
+
+            if (Loser != null) break;
+
             var body = c.FindChildByName<RigidBody>("Body");
 
             var armRootLocation = c.FindChildByName<Spatial>("ArmJointCenter").GlobalTransform;
@@ -70,27 +93,61 @@ public class MatchRunner : Spatial
 
             if (armRootLocation.origin.y < 0.4f || Mathf.Abs(bodyRotation) > Mathf.Pi / 2.2f)
             {
-                Loses(c);
+                StartLosing(c);
                 break;
             }
         }
 
         if (!any) RestartPoint();
 
+        if (any && DynamicCamera)
+        {
+            var cam = GetTree().CurrentScene.FindChildByType<Camera>(10);
+            if (cam != null)
+            {
+                var pos1 = combatants.First().FindChildByName<Spatial>("Body").GetGlobalLocation();
+                var pos2 = combatants.Last().FindChildByName<Spatial>("Body").GetGlobalLocation();
+                var midpoint = (pos1 + pos2) / 2;
+                //Console.WriteLine($"CP={midpoint}");
+
+                cam.SetGlobalLocation(new Vector3(midpoint.x, 2.281f, Mathf.Max(Mathf.Abs(pos1.x - pos2.x) / 2, 7f)));
+            }
+            else
+            {
+                Console.WriteLine("No camera?");
+            }
+        }
+
         Util.SpeedUpPhysicsIfNeeded();
     }
 
-    public void Loses(Combatant combatant)
+    public void StartLosing(Combatant combatant)
     {
-        if (combatant.IsPlayerControlled)
+        Loser = combatant;
+        MatchEndTime = 0f;
+
+        if (combatant.Number == 0)
         {
-            OpponentScore++;
             GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.PlayerLoses();
         }
         else
         {
-            PlayerScore++;
             GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.PlayerWins();
+        }
+    }
+
+    public void Loses(Combatant combatant)
+    {
+        Loser = null;
+        MatchEndTime = 0f;
+
+        if (combatant.Number == 0)
+        {
+            OpponentScore++;
+        }
+        else
+        {
+            PlayerScore++;
         }
 
         if (OpponentScore >= PointsToWinMatch)
@@ -118,6 +175,14 @@ public class MatchRunner : Spatial
 
     public void RestartPoint()
     {
+        if (InLocalMultiplayerMode)
+        {
+            ArenaType = LocalMultiplayerSetup.MapIndex;
+            PlayerCombantantType = LocalMultiplayerSetup.LeftPlayerCombatantType;
+            OpponentCombatantType = LocalMultiplayerSetup.RightPlayerCombatantType;
+
+        }
+
         Console.WriteLine($"Starting Point: PlayerScore={PlayerScore} OpponentScore={OpponentScore}");
 
         foreach (var c in GetTree().CurrentScene.FindChildrenByType<Combatant>(0))
@@ -141,19 +206,23 @@ public class MatchRunner : Spatial
         GetTree().CurrentScene.AddChild(arena);
 
         var player = CombatantTypes[PlayerCombantantType].Instance<Combatant>();
-        player.IsPlayerControlled = true;
+        player.Controller = Combatant.ControllerType.MouseAndKeyboard;
         player.Name = "Player";
         GetTree().CurrentScene.AddChild(player);
         player.SetGlobalLocation(new Vector3(-4, 2, 0));
+        player.Number = 0;
 
-        if (Difficulty != 2)
+        if (!InLocalMultiplayerMode)
         {
-            player.AddChild(MovementAIs[2].Instance<Node>());
-        }
+            if (Difficulty != 2)
+            {
+                player.AddChild(MovementAIs[2].Instance<Node>());
+            }
 
-        if (Difficulty == 0)
-        {
-            player.AddChild(BalanceAssistType.Instance());
+            if (Difficulty == 0)
+            {
+                player.AddChild(BalanceAssistType.Instance());
+            }
         }
 
 
@@ -162,10 +231,21 @@ public class MatchRunner : Spatial
         GetTree().CurrentScene.AddChild(opponent);
         opponent.SetGlobalLocation(new Vector3(4, 2, 0));
 
-        opponent.AddChild(MovementAIs[OpponentBalanceAIType].Instance<Node>());
-        opponent.AddChild(PunchingAIs[OpponentPunchAIType].Instance<Node>());
+        if (!InLocalMultiplayerMode)
+        {
+            opponent.AddChild(MovementAIs[OpponentBalanceAIType].Instance<Node>());
+            opponent.AddChild(PunchingAIs[OpponentPunchAIType].Instance<Node>());
+        }
+
+        opponent.Number = 1;
 
         GetTree().CurrentScene.FindChildByType<InGameUI>(2)?.MatchStart(PlayerScore + OpponentScore);
+
+        if (InLocalMultiplayerMode)
+        {
+            player.Controller = LocalMultiplayerSetup.LeftPlayerController;
+            opponent.Controller = LocalMultiplayerSetup.RightPlayerController;
+        }
     }
 
     public void RestartMatch()

@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://maps/TitleScreen.cs" type="Script" id=1]
 [ext_resource path="res://fonts/audiowide_xvbig.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/audiowide_sml.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/button_pressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://ui/button_normal.tres" type="StyleBox" id=5]
+[ext_resource path="res://ui/button_hover.tres" type="StyleBox" id=6]
+
+[sub_resource type="ButtonGroup" id=1]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 460.628, 580.593 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -17,10 +23,10 @@ anchor_right = 1.0
 anchor_bottom = 0.291
 margin_top = 72.0
 margin_bottom = -41.28
-custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
 custom_constants/shadow_offset_y = 4
+custom_fonts/font = ExtResource( 2 )
 text = "Rolling Tower Clash"
 align = 1
 valign = 1
@@ -35,10 +41,10 @@ anchor_right = 0.75
 anchor_bottom = 0.592
 margin_top = 0.279999
 margin_bottom = 0.640015
-custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = ExtResource( 3 )
 text = "Defeat the other towers by knocking them down to win the tournament! You win if your opponent is knocked down or out of the arena.
 
 Controls:
@@ -61,13 +67,55 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 897.0
-custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = ExtResource( 3 )
 text = "Made by Quadtree for Ludum Dare 49"
 align = 2
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.417
+anchor_right = 0.583
+anchor_bottom = 1.0
+margin_left = -0.640076
+margin_top = 844.497
+margin_right = 0.640015
+margin_bottom = -112.503
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SingleplayerButton" type="Button" parent="VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 300, 50 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+toggle_mode = true
+group = SubResource( 1 )
+text = "Singleplayer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LocalMultiplayerButton" type="Button" parent="VBoxContainer"]
+margin_top = 69.0
+margin_right = 320.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 300, 50 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+toggle_mode = true
+group = SubResource( 1 )
+text = "Local Multiplayer"
 __meta__ = {
 "_edit_use_anchors_": false
 }

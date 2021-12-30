@@ -1,5 +1,5 @@
-using Godot;
 using System;
+using Godot;
 using Godot.Collections;
 
 public class Combatant : Spatial
@@ -11,8 +11,29 @@ public class Combatant : Spatial
     public bool MoveLeft = false;
     public bool MoveRight = false;
 
+    public enum ControllerType
+    {
+        MouseAndKeyboard,
+        LeftKeyboard,
+        RightKeyboard,
+        Controller0,
+        Controller1,
+        AIControlled,
+    }
+
+    public int Number;
+
+    static Dictionary<ControllerType, string> ControllerTypeShortNames = new Dictionary<ControllerType, string>();
+
+    static Combatant()
+    {
+        ControllerTypeShortNames[ControllerType.LeftKeyboard] = "lk";
+        ControllerTypeShortNames[ControllerType.RightKeyboard] = "rk";
+        ControllerTypeShortNames[ControllerType.Controller0] = "c0";
+    }
+
     [Export]
-    public bool IsPlayerControlled;
+    public ControllerType Controller;
 
     private Vector3 ArmJointRelative = new Vector3(-1000000, 0, 0);
 
@@ -157,7 +178,7 @@ public class Combatant : Spatial
 
         TargetSpeed = 0;
 
-        if (IsPlayerControlled)
+        if (Controller == ControllerType.MouseAndKeyboard)
         {
             var cam = GetViewport().GetCamera();
 
@@ -172,6 +193,20 @@ public class Combatant : Spatial
                 var pos = (Vector3)curPos["position"];
                 SetPunchDestFromGlobal(pos);
             }
+        }
+        else if (Controller != ControllerType.AIControlled)
+        {
+            var shortName = ControllerTypeShortNames[Controller];
+
+            var armDelta = new Vector3(
+                Input.GetActionStrength($"{shortName}_move_arm_right") - Input.GetActionStrength($"{shortName}_move_arm_left"),
+                Input.GetActionStrength($"{shortName}_move_arm_up") - Input.GetActionStrength($"{shortName}_move_arm_down"),
+                0
+            );
+
+            //Console.WriteLine(armDelta);
+
+            DesiredArmPos = armDelta * (PunchRange + BonusPunchRangeDuringPunch) * 1.4f;
         }
 
         {
@@ -323,14 +358,25 @@ public class Combatant : Spatial
     {
         base._Input(@event);
 
-        if (IsPlayerControlled)
+        if (Controller == ControllerType.MouseAndKeyboard)
         {
             if (@event.IsActionPressed("move_left")) MoveLeft = true;
             if (@event.IsActionReleased("move_left")) MoveLeft = false;
             if (@event.IsActionPressed("move_right")) MoveRight = true;
             if (@event.IsActionReleased("move_right")) MoveRight = false;
 
-            if (@event.IsActionReleased("punch")) Punch();
+            if (@event.IsActionPressed("punch")) Punch();
+        }
+        else if (Controller != ControllerType.AIControlled)
+        {
+            var shortName = ControllerTypeShortNames[Controller];
+
+            if (@event.IsActionPressed($"{shortName}_move_left")) MoveLeft = true;
+            if (@event.IsActionReleased($"{shortName}_move_left")) MoveLeft = false;
+            if (@event.IsActionPressed($"{shortName}_move_right")) MoveRight = true;
+            if (@event.IsActionReleased($"{shortName}_move_right")) MoveRight = false;
+
+            if (@event.IsActionPressed($"{shortName}_punch")) Punch();
         }
     }
 

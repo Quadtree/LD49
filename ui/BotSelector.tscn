@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/button_pressed.tres" type="StyleBox" id=1]
+[ext_resource path="res://ui/button_normal.tres" type="StyleBox" id=2]
+[ext_resource path="res://ui/button_hover.tres" type="StyleBox" id=3]
+[ext_resource path="res://ui/ControllerSelector.cs" type="Script" id=4]
+
+[sub_resource type="ButtonGroup" id=1]
+
+[node name="ControllerSelector" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 10
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VanillaBean" type="Button" parent="."]
+margin_right = 300.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 300, 50 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+toggle_mode = true
+group = SubResource( 1 )
+text = "Vanilla Bean"
+
+[node name="Steamroller" type="Button" parent="."]
+margin_top = 64.0
+margin_right = 300.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 300, 50 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+toggle_mode = true
+group = SubResource( 1 )
+text = "Steamroller"
+
+[node name="Meteor" type="Button" parent="."]
+margin_top = 128.0
+margin_right = 300.0
+margin_bottom = 182.0
+rect_min_size = Vector2( 300, 50 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+toggle_mode = true
+group = SubResource( 1 )
+text = "Meteor"
+
+[node name="Mini" type="Button" parent="."]
+margin_top = 192.0
+margin_right = 300.0
+margin_bottom = 246.0
+rect_min_size = Vector2( 300, 50 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+toggle_mode = true
+group = SubResource( 1 )
+text = "Mini"
+
+[node name="Destructorizer" type="Button" parent="."]
+margin_top = 256.0
+margin_right = 300.0
+margin_bottom = 310.0
+rect_min_size = Vector2( 300, 50 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+toggle_mode = true
+group = SubResource( 1 )
+text = "Destructorizer"

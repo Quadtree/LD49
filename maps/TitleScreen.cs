@@ -1,5 +1,5 @@
-using Godot;
 using System;
+using Godot;
 
 public class TitleScreen : Control
 {
@@ -11,6 +11,19 @@ public class TitleScreen : Control
     public override void _Ready()
     {
         CallDeferred(nameof(CreateExitGame));
+
+        this.FindChildByName<Button>("SingleplayerButton").Connect("pressed", this, nameof(OnSingleplayerButtonPressed));
+        this.FindChildByName<Button>("LocalMultiplayerButton").Connect("pressed", this, nameof(OnLocalMultiplayerButtonPressed));
+    }
+
+    void OnLocalMultiplayerButtonPressed()
+    {
+        GetTree().ChangeScene("res://maps/LocalMultiplayerSetup.tscn");
+    }
+
+    void OnSingleplayerButtonPressed()
+    {
+        GetTree().ChangeScene("res://maps/SetupScreen.tscn");
     }
 
     private void CreateExitGame()
@@ -24,7 +37,7 @@ public class TitleScreen : Control
     {
         if (Input.IsMouseButtonPressed((int)ButtonList.Left))
         {
-            GetTree().ChangeScene("res://maps/SetupScreen.tscn");
+            //GetTree().ChangeScene("res://maps/SetupScreen.tscn");
         }
     }
 }
